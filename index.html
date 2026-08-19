@@ -165,11 +165,10 @@
       font-size: clamp(28px, 7vw, 36px);
       font-weight: 800;
       letter-spacing: -0.5px;
-      color: white;
+      color: var(--gold); /* <-- CHANGED: Now BOTH words are gold */
       line-height: 1.1;
       text-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
-    .name span { color: var(--gold); }
 
     .title {
       font-size: 17px;
@@ -554,7 +553,7 @@
       <img src="me.jpg" alt="Akif Marifli">
     </div>
 
-    <h1 class="name">AKİF <span>MARİFLİ</span></h1>
+    <h1 class="name">AKİF MARİFLİ</h1>
     <div class="title" id="surname">Mərkəzin Direktoru</div>
   </section>
 
@@ -638,7 +637,7 @@
       <button class="action-btn" id="saveBtn"><i class="fa-solid fa-address-card"></i> <span id="saveText">Saxla</span></button>
       <button class="action-btn" id="qrBtn"><i class="fa-solid fa-qrcode"></i> <span id="qrText">QR kod</span></button>
     </div>
-    <div class="powered">POWERED BY EVISITCARD.AZ</div>
+    <div class="powered"></div>
   </div>
 
 </div>
