@@ -165,7 +165,7 @@
       font-size: clamp(28px, 7vw, 36px);
       font-weight: 800;
       letter-spacing: -0.5px;
-      color: var(--gold); /* <-- CHANGED: Now BOTH words are gold */
+      color: var(--gold); /* Now BOTH words are gold */
       line-height: 1.1;
       text-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
@@ -586,12 +586,17 @@
           <a href="tel:+998907889529" class="phone-option">
             <i class="fa-solid fa-phone"></i>
             +998 90 788 95 29
-            <span class="label">Əsas</span>
+            <span class="label" id="labelMain">Əsas</span>
           </a>
           <a href="tel:+994502905005" class="phone-option">
             <i class="fa-solid fa-mobile-screen-button"></i>
             +994 50 290 50 05
-            <span class="label">Bakı</span>
+            <span class="label" id="labelBaku1">Bakı</span>
+          </a>
+           <a href="tel:+994559898955" class="phone-option">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            +994 55 989 89 55
+            <span class="label" id="labelBaku2">Bakı</span>
           </a>
         </div>
       </div>
@@ -677,7 +682,9 @@
       qrSub: 'Skan edin və rəqəmsal vizitkanı paylaşın',
       saved: 'Kontakt yadda saxlanıldı',
       copied: 'Link kopyalandı',
-      error: 'Xəta baş verdi'
+      error: 'Xəta baş verdi',
+      labelMain: 'Əsas',
+      labelBaku: 'Bakı'
     },
     uz: {
       surname: 'Markaz direktori',
@@ -696,7 +703,9 @@
       qrSub: 'Skanerlang va raqamli vizitkani ulashing',
       saved: 'Kontakt saqlandi',
       copied: 'Havola nusxalandi',
-      error: 'Xatolik yuz berdi'
+      error: 'Xatolik yuz berdi',
+      labelMain: 'Asosiy',
+      labelBaku: 'Boku'
     },
     ru: {
       surname: 'Директор центра',
@@ -715,7 +724,9 @@
       qrSub: 'Отсканируйте и поделитесь визиткой',
       saved: 'Контакт сохранён',
       copied: 'Ссылка скопирована',
-      error: 'Произошла ошибка'
+      error: 'Произошла ошибка',
+      labelMain: 'Основной',
+      labelBaku: 'Баку'
     },
     en: {
       surname: 'Director of the Center',
@@ -734,7 +745,9 @@
       qrSub: 'Scan to share the digital business card',
       saved: 'Contact saved',
       copied: 'Link copied',
-      error: 'Something went wrong'
+      error: 'Something went wrong',
+      labelMain: 'Main',
+      labelBaku: 'Baku'
     }
   };
 
@@ -758,6 +771,11 @@
   const modalTitle = document.getElementById('modalTitle');
   const modalSub = document.getElementById('modalSub');
   const modalClose = document.getElementById('modalCloseBtn');
+
+  // New IDs for phone labels
+  const labelMain = document.getElementById('labelMain');
+  const labelBaku1 = document.getElementById('labelBaku1');
+  const labelBaku2 = document.getElementById('labelBaku2');
 
   let toastTimer;
 
@@ -787,6 +805,11 @@
     shareEl.textContent = data.share;
     qrEl.textContent = data.qr;
     modalClose.textContent = data.close;
+
+    // 🟡 Update the phone labels
+    labelMain.textContent = data.labelMain;
+    labelBaku1.textContent = data.labelBaku;
+    labelBaku2.textContent = data.labelBaku;
 
     document.querySelectorAll('.lang').forEach(el => {
       el.classList.toggle('active', el.dataset.lang === lang);
