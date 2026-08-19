@@ -165,7 +165,7 @@
       font-size: clamp(28px, 7vw, 36px);
       font-weight: 800;
       letter-spacing: -0.5px;
-      color: var(--gold); /* Now BOTH words are gold */
+      color: var(--gold);
       line-height: 1.1;
       text-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
@@ -185,20 +185,50 @@
       padding: 18px 24px 28px;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 12px;
     }
 
-    .org {
-      font-size: 15px;
+    /* =========================================
+       ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ БЛОКОВ (ТЕМНЫЙ ФОН, КАК У КНОПОК)
+       ========================================= */
+    .info-block {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      background: var(--card-bg); /* Тот же темно-синий цвет, что и у карточки */
+      border: 1px solid rgba(255, 255, 255, 0.06); /* Тонкая рамка как у кнопок */
+      border-radius: 16px;
+      box-shadow: none;
+      text-align: left;
+    }
+
+    .info-block .icon {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold); /* Золотая иконка! */
+      font-size: 20px;
+      margin-top: 2px;
+    }
+
+    .info-block .text {
+      font-size: 14px;
       font-weight: 500;
-      color: var(--text-muted);
-      text-align: center;
-      line-height: 1.4;
-      max-width: 300px;
-      margin: 0 auto 4px;
-      letter-spacing: -0.2px;
+      color: var(--text-primary); /* Светло-белый текст, чтобы читался на темном фоне */
+      line-height: 1.5;
+      margin: 0;
+      letter-spacing: 0px;
     }
 
+    .info-block .text.long-title {
+      font-weight: 500;
+    }
+
+    /* Адрес */
     .address-line {
       display: flex;
       align-items: center;
@@ -206,8 +236,8 @@
       gap: 8px;
       font-size: 13px;
       color: var(--text-muted);
-      margin-top: -6px;
-      margin-bottom: 4px;
+      margin-top: -2px;
+      margin-bottom: 2px;
     }
     .address-line i { color: var(--gold); font-size: 12px; }
 
@@ -216,7 +246,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     .contact-btn {
@@ -553,15 +583,25 @@
       <img src="me.jpg" alt="Akif Marifli">
     </div>
 
-    <h1 class="name">AKİF MARİFLİ</h1>
+    <h1 class="name" id="fullName">AKİF MARİFLİ</h1>
     <div class="title" id="surname">Mərkəzin Direktoru</div>
   </section>
 
   <!-- ===== CONTENT ===== -->
   <div class="content">
 
-    <div class="org" id="position">
-      Azerbaijan Cultural Center Named After Haydar Aliyev In Uzbekistan
+    <!-- БЛОК #1: Название Центра (Темный фон, золотая иконка, белый текст) -->
+    <div class="info-block">
+      <div class="icon"><i class="fa-solid fa-landmark"></i></div>
+      <div class="text long-title" id="position">
+        Azərbaycan Respublikasının Özbəkistan Respublikasındakı Səfirliyinin tabeliyində Heydər Əliyev adına Azərbaycan Mədəniyyət Mərkəzi
+      </div>
+    </div>
+
+    <!-- БЛОК #2: Должность (Темный фон, золотая иконка, белый текст) -->
+    <div class="info-block">
+      <div class="icon"><i class="fa-solid fa-paintbrush"></i></div>
+      <div class="text" id="subtitleText">MƏRKƏZİN DİREKTORU</div>
     </div>
 
     <div class="address-line" id="address">
@@ -593,10 +633,10 @@
             +994 50 290 50 05
             <span class="label" id="labelBaku1">Bakı</span>
           </a>
-           <a href="tel:+994559898955" class="phone-option">
+           <a href="tel:+998948184747" class="phone-option">
             <i class="fa-solid fa-mobile-screen-button"></i>
-            +994 55 989 89 55
-            <span class="label" id="labelBaku2">Bakı</span>
+            +998 94 818 47 47
+            <span class="label" id="labelToshkent">Toshkent</span>
           </a>
         </div>
       </div>
@@ -666,8 +706,9 @@
   ========================================================= */
   const T = {
     az: {
-      surname: 'Mərkəzin Direktoru',
+      fullName: 'AKİF MARİFLİ',
       position: 'Azərbaycan Respublikasının Özbəkistan Respublikasındakı Səfirliyinin tabeliyində Heydər Əliyev adına Azərbaycan Mədəniyyət Mərkəzi',
+      subtitle: 'Mərkəzin Direktoru',
       address: 'Daşkənd şəhəri, Özbəkistan',
       call: 'Mobil nömrə',
       email: 'E-poçt',
@@ -684,11 +725,13 @@
       copied: 'Link kopyalandı',
       error: 'Xəta baş verdi',
       labelMain: 'Əsas',
-      labelBaku: 'Bakı'
+      labelBaku: 'Bakı',
+      labelToshkent: 'Daşkənd'
     },
     uz: {
-      surname: 'Markaz direktori',
-      position: 'O‘zbekiston Respublikasidagi O‘zbekiston Respublikasi Elchixonasi huzuridagi Haydar Aliyev nomidagi O‘zbekiston Madaniyat markazi',
+      fullName: 'AKİF MARİFLİ',
+      position: 'Ozarbayjon Respublikasining O‘zbekiston Respublikasidagi Elchixonasi huzuridagi Haydar Aliyev nomidagi Ozarbayjon Madaniyat Markazi',
+      subtitle: 'Markaz Direktrori',
       address: 'Toshkent shahri, O‘zbekiston',
       call: 'Qo‘ng‘iroq',
       email: 'E-pochta',
@@ -705,11 +748,13 @@
       copied: 'Havola nusxalandi',
       error: 'Xatolik yuz berdi',
       labelMain: 'Asosiy',
-      labelBaku: 'Boku'
+      labelBaku: 'Boku',
+      labelToshkent: 'Toshkent'
     },
     ru: {
-      surname: 'Директор центра',
+      fullName: 'АКИФ МАРИФЛИ',
       position: 'Азербайджанский Культурный Центр имени Гейдара Алиева при Посольстве Азербайджанской Республики в Республике Узбекистан',
+      subtitle: 'Директор Центра',
       address: 'г. Ташкент, Узбекистан',
       call: 'Позвонить',
       email: 'Почта',
@@ -726,11 +771,13 @@
       copied: 'Ссылка скопирована',
       error: 'Произошла ошибка',
       labelMain: 'Основной',
-      labelBaku: 'Баку'
+      labelBaku: 'Баку',
+      labelToshkent: 'Ташкент'
     },
     en: {
-      surname: 'Director of the Center',
+      fullName: 'AKIF MARIFLI',
       position: 'Heydar Aliyev Azerbaijan Cultural Center under the Embassy of the Republic of Azerbaijan in the Republic of Uzbekistan',
+      subtitle: 'Director Of The Center',
       address: 'Tashkent, Uzbekistan',
       call: 'Call',
       email: 'Email',
@@ -747,15 +794,18 @@
       copied: 'Link copied',
       error: 'Something went wrong',
       labelMain: 'Main',
-      labelBaku: 'Baku'
+      labelBaku: 'Baku',
+      labelToshkent: 'Tashkent'
     }
   };
 
   /* =========================================================
      DOM REFS
   ========================================================= */
+  const fullNameEl = document.getElementById('fullName');
   const surnameEl = document.getElementById('surname');
   const positionEl = document.getElementById('position');
+  const subtitleEl = document.getElementById('subtitleText');
   const addressEl = document.getElementById('address');
   const callEl = document.getElementById('callText');
   const emailEl = document.getElementById('emailText');
@@ -772,10 +822,10 @@
   const modalSub = document.getElementById('modalSub');
   const modalClose = document.getElementById('modalCloseBtn');
 
-  // New IDs for phone labels
+  // IDs for phone labels
   const labelMain = document.getElementById('labelMain');
   const labelBaku1 = document.getElementById('labelBaku1');
-  const labelBaku2 = document.getElementById('labelBaku2');
+  const labelToshkent = document.getElementById('labelToshkent');
 
   let toastTimer;
 
@@ -793,8 +843,11 @@
     const data = T[lang];
     if (!data) return;
     document.documentElement.lang = lang;
+    
+    fullNameEl.textContent = data.fullName; 
     surnameEl.textContent = data.surname;
     positionEl.textContent = data.position;
+    subtitleEl.textContent = data.subtitle;
     addressEl.innerHTML = `<i class="fa-solid fa-location-dot"></i><span>${data.address}</span>`;
     callEl.innerHTML = `${data.call} <i class="fa-solid fa-chevron-down"></i>`;
     emailEl.textContent = data.email;
@@ -806,10 +859,10 @@
     qrEl.textContent = data.qr;
     modalClose.textContent = data.close;
 
-    // 🟡 Update the phone labels
+    // Update the phone labels
     labelMain.textContent = data.labelMain;
     labelBaku1.textContent = data.labelBaku;
-    labelBaku2.textContent = data.labelBaku;
+    labelToshkent.textContent = data.labelToshkent;
 
     document.querySelectorAll('.lang').forEach(el => {
       el.classList.toggle('active', el.dataset.lang === lang);
@@ -875,7 +928,7 @@
       'N:Marifli;Akif;;;', 'FN:Akif Marifli',
       'ORG:Azerbaijan Cultural Center Named After Haydar Aliyev In Uzbekistan',
       'TITLE:Director',
-      'TEL;TYPE=CELL:+998907889529', 'TEL;TYPE=CELL:+994502905005',
+      'TEL;TYPE=CELL:+998907889529', 'TEL;TYPE=CELL:+994502905005', 'TEL;TYPE=CELL:+998948184747',
       'EMAIL:akif.marifli@gmail.com',
       'ADR;TYPE=WORK:;;Tashkent;Uzbekistan;;;',
       'END:VCARD'
