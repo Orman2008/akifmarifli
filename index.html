@@ -8,7 +8,7 @@
 
   <title>Akif Marifli • Digital Card</title>
 
-  <!-- Google Fonts: plus Jakarta Sans for a fresh feel -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -83,7 +83,6 @@
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    /* subtle glass divider */
     .card::before {
       content: '';
       position: absolute;
@@ -92,7 +91,7 @@
       pointer-events: none;
     }
 
-    /* ---------- HERO (dark elegant) ---------- */
+    /* ---------- HERO ---------- */
     .hero {
       position: relative;
       padding: 28px 24px 100px;
@@ -101,7 +100,6 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
 
-    /* top bar: logo + lang */
     .top-bar {
       display: flex;
       align-items: center;
@@ -250,6 +248,8 @@
       color: var(--text-primary);
       transition: all 0.2s ease;
       backdrop-filter: blur(2px);
+      cursor: pointer;
+      position: relative;
     }
     .contact-btn:hover {
       background: rgba(217, 181, 108, 0.08);
@@ -288,7 +288,90 @@
       font-weight: 700;
     }
 
-    /* bottom row (NFC, QR, etc) */
+    /* ---------- PHONE DROPDOWN ---------- */
+    .phone-dropdown {
+      position: relative;
+      grid-column: span 2;
+    }
+
+    .phone-dropdown .contact-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .phone-dropdown .contact-btn .contact-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .phone-dropdown .contact-btn .contact-label i {
+      font-size: 10px;
+      color: var(--gold);
+      transition: 0.2s;
+    }
+
+    .phone-dropdown.active .contact-btn .contact-label i {
+      transform: rotate(180deg);
+    }
+
+    .phone-options {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: #1a2f47;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      overflow: hidden;
+      display: none;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    .phone-dropdown.active .phone-options {
+      display: block;
+      animation: dropIn 0.2s ease;
+    }
+
+    @keyframes dropIn {
+      0% { opacity: 0; transform: translateY(-6px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .phone-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: 0.15s;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    .phone-option:last-child { border-bottom: 0; }
+    .phone-option:hover {
+      background: rgba(217, 181, 108, 0.08);
+    }
+    .phone-option i {
+      color: var(--gold);
+      width: 20px;
+      text-align: center;
+    }
+    .phone-option .label {
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 600;
+      margin-left: auto;
+      background: rgba(255,255,255,0.04);
+      padding: 2px 10px;
+      border-radius: 20px;
+    }
+
+    /* ---------- meta row ---------- */
     .meta-row {
       display: flex;
       justify-content: center;
@@ -308,7 +391,7 @@
     }
     .meta-item i { color: var(--gold); font-size: 11px; }
 
-    /* ---------- FOOTER (action bar) ---------- */
+    /* ---------- FOOTER ---------- */
     .footer {
       padding: 10px 20px 20px;
       background: rgba(0, 0, 0, 0.2);
@@ -355,7 +438,7 @@
       margin-top: 4px;
     }
 
-    /* ---------- MODAL (QR) ---------- */
+    /* ---------- MODAL ---------- */
     .modal {
       position: fixed;
       inset: 0;
@@ -458,6 +541,7 @@
       .name { font-size: 26px; }
       .title { font-size: 15px; }
       .contact-btn { min-height: 46px; }
+      .phone-option { font-size: 12px; padding: 10px 14px; }
     }
   </style>
 </head>
@@ -504,31 +588,49 @@
     <!-- CONTACT GRID -->
     <div class="contact-grid">
 
-      <a href="tel:+998907889529" class="contact-btn">
-        <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
-        <span class="contact-label" id="callText">ZƏNG ET</span>
-      </a>
+      <!-- PHONE DROPDOWN (spans 2 cols) -->
+      <div class="phone-dropdown" id="phoneDropdown">
+        <div class="contact-btn" id="phoneToggle">
+          <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+          <span class="contact-label" id="callText">
+            ZƏNG ET
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </div>
 
-      <a href="tel:+994502905005" class="contact-btn">
-        <span class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
-        <span class="contact-label">+994 50</span>
-      </a>
+        <div class="phone-options">
+          <a href="tel:+998907889529" class="phone-option">
+            <i class="fa-solid fa-phone"></i>
+            +998 90 788 95 29
+            <span class="label">Əsas</span>
+          </a>
+          <a href="tel:+994502905005" class="phone-option">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            +994 50 290 50 05
+            <span class="label">Bakı</span>
+          </a>
+        </div>
+      </div>
 
-      <a href="https://t.me/" target="_blank" rel="noopener" class="contact-btn">
+      <!-- TELEGRAM (with @AkifMarifli) -->
+      <a href="https://t.me/AkifMarifli" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-brands fa-telegram"></i></span>
-        <span class="contact-label">TELEGRAM</span>
+        <span class="contact-label">@AkifMarifli</span>
       </a>
 
-      <a href="https://instagram.com/" target="_blank" rel="noopener" class="contact-btn">
+      <!-- INSTAGRAM (with link) -->
+      <a href="https://www.instagram.com/akif_marifli" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-brands fa-instagram"></i></span>
-        <span class="contact-label">INSTAGRAM</span>
+        <span class="contact-label">akif_marifli</span>
       </a>
 
+      <!-- WHATSAPP -->
       <a href="https://wa.me/998907889529" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-brands fa-whatsapp"></i></span>
         <span class="contact-label">WHATSAPP</span>
       </a>
 
+      <!-- EMAIL -->
       <a href="mailto:info@evisitcard.az" class="contact-btn">
         <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
         <span class="contact-label" id="emailText">E-POÇT</span>
@@ -672,7 +774,7 @@
     surnameEl.textContent = data.surname;
     positionEl.textContent = data.position;
     addressEl.innerHTML = `<i class="fa-solid fa-location-dot"></i><span>${data.address}</span>`;
-    callEl.textContent = data.call;
+    callEl.innerHTML = `${data.call} <i class="fa-solid fa-chevron-down"></i>`;
     emailEl.textContent = data.email;
     saveEl.textContent = data.save;
     qrEl.textContent = data.qr;
@@ -690,6 +792,34 @@
 
   const saved = localStorage.getItem('card-lang');
   setLanguage(T[saved] ? saved : 'az');
+
+  /* =========================================================
+     PHONE DROPDOWN
+  ========================================================= */
+  const phoneDropdown = document.getElementById('phoneDropdown');
+  const phoneToggle = document.getElementById('phoneToggle');
+
+  phoneToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    phoneDropdown.classList.toggle('active');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', () => {
+    phoneDropdown.classList.remove('active');
+  });
+
+  // Close dropdown when an option is selected
+  document.querySelectorAll('.phone-option').forEach(option => {
+    option.addEventListener('click', () => {
+      phoneDropdown.classList.remove('active');
+    });
+  });
+
+  // Prevent closing when clicking inside the dropdown
+  document.querySelector('.phone-options').addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
 
   /* =========================================================
      SHARE
