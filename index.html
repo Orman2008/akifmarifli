@@ -103,25 +103,10 @@
     .top-bar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       margin-bottom: 26px;
       position: relative;
       z-index: 3;
-    }
-
-    .logo-badge {
-      width: 46px;
-      height: 46px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(217, 181, 108, 0.12);
-      border: 1px solid rgba(217, 181, 108, 0.25);
-      color: var(--gold);
-      font-size: 18px;
-      backdrop-filter: blur(4px);
-      transition: 0.2s;
     }
 
     .lang-switch {
@@ -553,7 +538,6 @@
   <!-- ===== HERO ===== -->
   <section class="hero">
     <div class="top-bar">
-      <div class="logo-badge"><i class="fa-solid fa-crown"></i></div>
       <div class="lang-switch">
         <span class="lang active" data-lang="az">AZ</span>
         <span class="lang-sep">|</span>
@@ -566,7 +550,8 @@
     </div>
 
     <div class="photo-ring">
-      <img src="https://evisitcard.az/uploads/vcards/covers/2925/screenshot-4-x226.webp" alt="Akif Marifli">
+      <!-- 👇 CHANGE THIS TO THE NAME OF YOUR PHOTO FILE 👇 -->
+      <img src="me.jpg" alt="Akif Marifli">
     </div>
 
     <h1 class="name">AKİF <span>MARİFLİ</span></h1>
@@ -612,28 +597,28 @@
         </div>
       </div>
 
-      <!-- TELEGRAM (with @AkifMarifli) -->
+      <!-- TELEGRAM -->
       <a href="https://t.me/AkifMarifli" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-brands fa-telegram"></i></span>
-        <span class="contact-label">@AkifMarifli</span>
+        <span class="contact-label" id="telegramLabel">Telegram</span>
       </a>
 
-      <!-- INSTAGRAM (with link) -->
+      <!-- INSTAGRAM -->
       <a href="https://www.instagram.com/akif_marifli" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-brands fa-instagram"></i></span>
-        <span class="contact-label">akif_marifli</span>
+        <span class="contact-label" id="instagramLabel">Instagram</span>
       </a>
 
       <!-- WHATSAPP -->
       <a href="https://wa.me/998907889529" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-brands fa-whatsapp"></i></span>
-        <span class="contact-label">WHATSAPP</span>
+        <span class="contact-label" id="whatsappLabel">Whatsapp</span>
       </a>
 
       <!-- EMAIL -->
       <a href="mailto:info@evisitcard.az" class="contact-btn">
         <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
-        <span class="contact-label" id="emailText">E-POÇT</span>
+        <span class="contact-label" id="emailText">E-poçt</span>
       </a>
 
     </div>
@@ -649,9 +634,9 @@
   <!-- ===== FOOTER ===== -->
   <div class="footer">
     <div class="action-row">
-      <button class="action-btn" id="shareBtn"><i class="fa-solid fa-share-nodes"></i> PAYLAŞ</button>
-      <button class="action-btn" id="saveBtn"><i class="fa-solid fa-address-card"></i> <span id="saveText">SAXLA</span></button>
-      <button class="action-btn" id="qrBtn"><i class="fa-solid fa-qrcode"></i> <span id="qrText">QR KOD</span></button>
+      <button class="action-btn" id="shareBtn"><i class="fa-solid fa-share-nodes"></i> <span id="shareText">Paylaş</span></button>
+      <button class="action-btn" id="saveBtn"><i class="fa-solid fa-address-card"></i> <span id="saveText">Saxla</span></button>
+      <button class="action-btn" id="qrBtn"><i class="fa-solid fa-qrcode"></i> <span id="qrText">QR kod</span></button>
     </div>
     <div class="powered">POWERED BY EVISITCARD.AZ</div>
   </div>
@@ -664,7 +649,7 @@
     <div class="modal-title" id="modalTitle">QR Code</div>
     <div class="modal-sub" id="modalSub">Skan edin və kartı paylaşın</div>
     <div id="qr-container"></div>
-    <button class="modal-close" id="modalCloseBtn">BAĞLA</button>
+    <button class="modal-close" id="modalCloseBtn">Bağla</button>
   </div>
 </div>
 
@@ -680,12 +665,16 @@
       surname: 'Mərkəzin Direktoru',
       position: 'Azərbaycan Respublikasının Özbəkistandakı Heydər Əliyev adına Mədəniyyət Mərkəzi',
       address: 'Daşkənd şəhəri, Özbəkistan',
-      call: 'ZƏNG ET',
-      email: 'E-POÇT',
-      save: 'SAXLA',
-      qr: 'QR KOD',
-      close: 'BAĞLA',
-      qrTitle: 'QR KOD',
+      call: 'Mobil nömrə',
+      email: 'E-poçt',
+      telegram: 'Telegram',
+      instagram: 'Instagram',
+      whatsapp: 'Whatsapp',
+      save: 'Saxla',
+      share: 'Paylaş',
+      qr: 'QR kod',
+      close: 'Bağla',
+      qrTitle: 'QR kod',
       qrSub: 'Skan edin və rəqəmsal vizitkanı paylaşın',
       saved: 'Kontakt yadda saxlanıldı',
       copied: 'Link kopyalandı',
@@ -695,12 +684,16 @@
       surname: 'Markaz direktori',
       position: 'O‘zbekistondagi Haydar Aliyev nomidagi Madaniyat markazi',
       address: 'Toshkent shahri, O‘zbekiston',
-      call: 'QO‘NG‘IROQ',
-      email: 'E-POCHTA',
-      save: 'SAQLASH',
-      qr: 'QR KOD',
-      close: 'YOPISH',
-      qrTitle: 'QR KOD',
+      call: 'Qo‘ng‘iroq',
+      email: 'E-pochta',
+      telegram: 'Telegram',
+      instagram: 'Instagram',
+      whatsapp: 'Whatsapp',
+      save: 'Saqlash',
+      share: 'Ulashish',
+      qr: 'QR kod',
+      close: 'Yopish',
+      qrTitle: 'QR kod',
       qrSub: 'Skanerlang va raqamli vizitkani ulashing',
       saved: 'Kontakt saqlandi',
       copied: 'Havola nusxalandi',
@@ -710,12 +703,16 @@
       surname: 'Директор центра',
       position: 'Культурный центр имени Гейдара Алиева в Узбекистане',
       address: 'г. Ташкент, Узбекистан',
-      call: 'ПОЗВОНИТЬ',
-      email: 'ПОЧТА',
-      save: 'СОХРАНИТЬ',
-      qr: 'QR КОД',
-      close: 'ЗАКРЫТЬ',
-      qrTitle: 'QR-КОД',
+      call: 'Позвонить',
+      email: 'Почта',
+      telegram: 'Telegram',
+      instagram: 'Instagram',
+      whatsapp: 'Whatsapp',
+      save: 'Сохранить',
+      share: 'Поделиться',
+      qr: 'QR код',
+      close: 'Закрыть',
+      qrTitle: 'QR-код',
       qrSub: 'Отсканируйте и поделитесь визиткой',
       saved: 'Контакт сохранён',
       copied: 'Ссылка скопирована',
@@ -725,12 +722,16 @@
       surname: 'Director of the Center',
       position: 'Heydar Aliyev Cultural Center in Uzbekistan',
       address: 'Tashkent, Uzbekistan',
-      call: 'CALL',
-      email: 'EMAIL',
-      save: 'SAVE',
-      qr: 'QR CODE',
-      close: 'CLOSE',
-      qrTitle: 'QR CODE',
+      call: 'Call',
+      email: 'Email',
+      telegram: 'Telegram',
+      instagram: 'Instagram',
+      whatsapp: 'Whatsapp',
+      save: 'Save',
+      share: 'Share',
+      qr: 'QR code',
+      close: 'Close',
+      qrTitle: 'QR code',
       qrSub: 'Scan to share the digital business card',
       saved: 'Contact saved',
       copied: 'Link copied',
@@ -746,7 +747,11 @@
   const addressEl = document.getElementById('address');
   const callEl = document.getElementById('callText');
   const emailEl = document.getElementById('emailText');
+  const telegramEl = document.getElementById('telegramLabel');
+  const instagramEl = document.getElementById('instagramLabel');
+  const whatsappEl = document.getElementById('whatsappLabel');
   const saveEl = document.getElementById('saveText');
+  const shareEl = document.getElementById('shareText');
   const qrEl = document.getElementById('qrText');
   const toastEl = document.getElementById('toast');
   const qrModal = document.getElementById('qrModal');
@@ -776,7 +781,11 @@
     addressEl.innerHTML = `<i class="fa-solid fa-location-dot"></i><span>${data.address}</span>`;
     callEl.innerHTML = `${data.call} <i class="fa-solid fa-chevron-down"></i>`;
     emailEl.textContent = data.email;
+    telegramEl.textContent = data.telegram;
+    instagramEl.textContent = data.instagram;
+    whatsappEl.textContent = data.whatsapp;
     saveEl.textContent = data.save;
+    shareEl.textContent = data.share;
     qrEl.textContent = data.qr;
     modalClose.textContent = data.close;
 
@@ -804,19 +813,16 @@
     phoneDropdown.classList.toggle('active');
   });
 
-  // Close dropdown when clicking outside
   document.addEventListener('click', () => {
     phoneDropdown.classList.remove('active');
   });
 
-  // Close dropdown when an option is selected
   document.querySelectorAll('.phone-option').forEach(option => {
     option.addEventListener('click', () => {
       phoneDropdown.classList.remove('active');
     });
   });
 
-  // Prevent closing when clicking inside the dropdown
   document.querySelector('.phone-options').addEventListener('click', (e) => {
     e.stopPropagation();
   });
