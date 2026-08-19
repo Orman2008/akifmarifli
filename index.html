@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1a2b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <title>Akif Marifli • Digital Card</title>
+
+  <!-- Google Fonts: plus Jakarta Sans for a fresh feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <style>
+    /* ---------- RESET & VARIABLES ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #0a1628;
+      --card-bg: #121f33;
+      --card-border: rgba(255, 255, 255, 0.06);
+      --text-primary: #f0f4fa;
+      --text-muted: #a0b3cc;
+      --gold: #d9b56c;
+      --gold-soft: #f0dba8;
+      --gold-dark: #b58d42;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      --radius-lg: 40px;
+      --radius-md: 24px;
+      --radius-sm: 14px;
+    }
+
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 20% 20%, #1a2f4a, #070f1d 80%);
+      color: var(--text-primary);
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+      font-family: inherit;
+    }
+
+    /* ---------- CARD ---------- */
+    .card {
+      width: 100%;
+      max-width: 420px;
+      min-height: min(880px, calc(100dvh - 30px));
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background: var(--card-bg);
+      backdrop-filter: blur(2px);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: cardGlow 0.7s ease both;
+    }
+
+    @keyframes cardGlow {
+      0% { opacity: 0; transform: scale(0.96) translateY(12px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* subtle glass divider */
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 10%, rgba(217, 181, 108, 0.05), transparent 50%);
+      pointer-events: none;
+    }
+
+    /* ---------- HERO (dark elegant) ---------- */
+    .hero {
+      position: relative;
+      padding: 28px 24px 100px;
+      text-align: center;
+      background: linear-gradient(145deg, #182b42, #0b1a2e);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    /* top bar: logo + lang */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 26px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .logo-badge {
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(217, 181, 108, 0.12);
+      border: 1px solid rgba(217, 181, 108, 0.25);
+      color: var(--gold);
+      font-size: 18px;
+      backdrop-filter: blur(4px);
+      transition: 0.2s;
+    }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px 10px 4px 8px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(4px);
+    }
+
+    .lang {
+      padding: 4px 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 30px;
+      transition: 0.2s;
+      opacity: 0.6;
+    }
+    .lang:hover { opacity: 0.9; }
+    .lang.active {
+      background: var(--gold);
+      color: #0a1628;
+      opacity: 1;
+      padding: 4px 10px;
+    }
+    .lang-sep { color: rgba(255,255,255,0.1); font-size: 12px; }
+
+    /* photo */
+    .photo-ring {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 20px;
+      padding: 3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), #a77d3a, var(--gold));
+      box-shadow: 0 12px 35px rgba(0,0,0,0.5), 0 0 0 4px rgba(217, 181, 108, 0.15);
+    }
+    .photo-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #0b1a2e;
+      display: block;
+    }
+
+    .name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(28px, 7vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: white;
+      line-height: 1.1;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    .name span { color: var(--gold); }
+
+    .title {
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--gold-soft);
+      margin-top: 6px;
+      letter-spacing: 0.3px;
+      opacity: 0.9;
+    }
+
+    /* ---------- CONTENT ---------- */
+    .content {
+      flex: 1;
+      padding: 18px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .org {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.4;
+      max-width: 300px;
+      margin: 0 auto 4px;
+      letter-spacing: -0.2px;
+    }
+
+    .address-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: -6px;
+      margin-bottom: 4px;
+    }
+    .address-line i { color: var(--gold); font-size: 12px; }
+
+    /* contact grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .contact-btn {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 60px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+      backdrop-filter: blur(2px);
+    }
+    .contact-btn:hover {
+      background: rgba(217, 181, 108, 0.08);
+      border-color: rgba(217, 181, 108, 0.2);
+      transform: translateY(-2px);
+    }
+    .contact-btn:active { transform: scale(0.97); }
+
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(217, 181, 108, 0.12);
+      color: var(--gold);
+      font-size: 15px;
+      transition: 0.2s;
+    }
+    .contact-btn:hover .contact-icon {
+      background: var(--gold);
+      color: #0a1628;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .contact-btn .contact-label strong {
+      color: white;
+      font-weight: 700;
+    }
+
+    /* bottom row (NFC, QR, etc) */
+    .meta-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      margin-top: 8px;
+      color: var(--text-muted);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      opacity: 0.7;
+    }
+    .meta-item i { color: var(--gold); font-size: 11px; }
+
+    /* ---------- FOOTER (action bar) ---------- */
+    .footer {
+      padding: 10px 20px 20px;
+      background: rgba(0, 0, 0, 0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .action-btn {
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .action-btn:hover {
+      background: rgba(217, 181, 108, 0.08);
+      border-color: rgba(217, 181, 108, 0.2);
+      color: white;
+    }
+    .action-btn i { font-size: 14px; color: var(--gold); }
+
+    .powered {
+      text-align: center;
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.15);
+      margin-top: 4px;
+    }
+
+    /* ---------- MODAL (QR) ---------- */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(2, 8, 18, 0.8);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.25s;
+    }
+    .modal.show { opacity: 1; visibility: visible; }
+
+    .modal-box {
+      width: 100%;
+      max-width: 320px;
+      padding: 30px 24px 28px;
+      border-radius: 32px;
+      background: #162b42;
+      border: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+      transform: translateY(16px) scale(0.96);
+      transition: 0.25s;
+    }
+    .modal.show .modal-box { transform: translateY(0) scale(1); }
+
+    .modal-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+    }
+    .modal-sub {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin: 6px 0 18px;
+    }
+
+    #qr-container {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 20px;
+      background: white;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+    #qr-container img { display: block; width: 100%; height: 100%; }
+
+    .modal-close {
+      width: 100%;
+      height: 46px;
+      border: 0;
+      border-radius: 40px;
+      background: var(--gold);
+      color: #0a1628;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .modal-close:hover { background: #e8c97a; }
+
+    /* ---------- TOAST ---------- */
+    .toast {
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      bottom: 30px;
+      max-width: calc(100vw - 40px);
+      padding: 14px 22px;
+      border-radius: 60px;
+      background: #1d3148;
+      border: 1px solid rgba(255,255,255,0.06);
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      transform: translate(-50%, 20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s ease;
+      backdrop-filter: blur(8px);
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 430px) {
+      body { padding: 0; }
+      .card { min-height: 100dvh; border-radius: 0; }
+    }
+    @media (max-width: 370px) {
+      .hero { padding: 20px 16px 80px; }
+      .photo-ring { width: 100px; height: 100px; }
+      .name { font-size: 26px; }
+      .title { font-size: 15px; }
+      .contact-btn { min-height: 46px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="top-bar">
+      <div class="logo-badge"><i class="fa-solid fa-crown"></i></div>
+      <div class="lang-switch">
+        <span class="lang active" data-lang="az">AZ</span>
+        <span class="lang-sep">|</span>
+        <span class="lang" data-lang="uz">UZ</span>
+        <span class="lang-sep">|</span>
+        <span class="lang" data-lang="ru">RU</span>
+        <span class="lang-sep">|</span>
+        <span class="lang" data-lang="en">EN</span>
+      </div>
+    </div>
+
+    <div class="photo-ring">
+      <img src="https://evisitcard.az/uploads/vcards/covers/2925/screenshot-4-x226.webp" alt="Akif Marifli">
+    </div>
+
+    <h1 class="name">AKİF <span>MARİFLİ</span></h1>
+    <div class="title" id="surname">Mərkəzin Direktoru</div>
+  </section>
+
+  <!-- ===== CONTENT ===== -->
+  <div class="content">
+
+    <div class="org" id="position">
+      Azerbaijan Cultural Center Named After Haydar Aliyev In Uzbekistan
+    </div>
+
+    <div class="address-line" id="address">
+      <i class="fa-solid fa-location-dot"></i>
+      <span>Daşkənd şəhəri, Özbəkistan</span>
+    </div>
+
+    <!-- CONTACT GRID -->
+    <div class="contact-grid">
+
+      <a href="tel:+998907889529" class="contact-btn">
+        <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+        <span class="contact-label" id="callText">ZƏNG ET</span>
+      </a>
+
+      <a href="tel:+994502905005" class="contact-btn">
+        <span class="contact-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+        <span class="contact-label">+994 50</span>
+      </a>
+
+      <a href="https://t.me/" target="_blank" rel="noopener" class="contact-btn">
+        <span class="contact-icon"><i class="fa-brands fa-telegram"></i></span>
+        <span class="contact-label">TELEGRAM</span>
+      </a>
+
+      <a href="https://instagram.com/" target="_blank" rel="noopener" class="contact-btn">
+        <span class="contact-icon"><i class="fa-brands fa-instagram"></i></span>
+        <span class="contact-label">INSTAGRAM</span>
+      </a>
+
+      <a href="https://wa.me/998907889529" target="_blank" rel="noopener" class="contact-btn">
+        <span class="contact-icon"><i class="fa-brands fa-whatsapp"></i></span>
+        <span class="contact-label">WHATSAPP</span>
+      </a>
+
+      <a href="mailto:info@evisitcard.az" class="contact-btn">
+        <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+        <span class="contact-label" id="emailText">E-POÇT</span>
+      </a>
+
+    </div>
+
+    <!-- meta row -->
+    <div class="meta-row">
+      <span class="meta-item"><i class="fa-solid fa-bolt"></i> NFC</span>
+      <span class="meta-item"><i class="fa-solid fa-qrcode"></i> QR</span>
+      <span class="meta-item"><i class="fa-solid fa-link"></i> DIGITAL</span>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    <div class="action-row">
+      <button class="action-btn" id="shareBtn"><i class="fa-solid fa-share-nodes"></i> PAYLAŞ</button>
+      <button class="action-btn" id="saveBtn"><i class="fa-solid fa-address-card"></i> <span id="saveText">SAXLA</span></button>
+      <button class="action-btn" id="qrBtn"><i class="fa-solid fa-qrcode"></i> <span id="qrText">QR KOD</span></button>
+    </div>
+    <div class="powered">POWERED BY EVISITCARD.AZ</div>
+  </div>
+
+</div>
+
+<!-- ===== QR MODAL ===== -->
+<div class="modal" id="qrModal">
+  <div class="modal-box">
+    <div class="modal-title" id="modalTitle">QR Code</div>
+    <div class="modal-sub" id="modalSub">Skan edin və kartı paylaşın</div>
+    <div id="qr-container"></div>
+    <button class="modal-close" id="modalCloseBtn">BAĞLA</button>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
+<script>
+  /* =========================================================
+     TRANSLATIONS
+  ========================================================= */
+  const T = {
+    az: {
+      surname: 'Mərkəzin Direktoru',
+      position: 'Azərbaycan Respublikasının Özbəkistandakı Heydər Əliyev adına Mədəniyyət Mərkəzi',
+      address: 'Daşkənd şəhəri, Özbəkistan',
+      call: 'ZƏNG ET',
+      email: 'E-POÇT',
+      save: 'SAXLA',
+      qr: 'QR KOD',
+      close: 'BAĞLA',
+      qrTitle: 'QR KOD',
+      qrSub: 'Skan edin və rəqəmsal vizitkanı paylaşın',
+      saved: 'Kontakt yadda saxlanıldı',
+      copied: 'Link kopyalandı',
+      error: 'Xəta baş verdi'
+    },
+    uz: {
+      surname: 'Markaz direktori',
+      position: 'O‘zbekistondagi Haydar Aliyev nomidagi Madaniyat markazi',
+      address: 'Toshkent shahri, O‘zbekiston',
+      call: 'QO‘NG‘IROQ',
+      email: 'E-POCHTA',
+      save: 'SAQLASH',
+      qr: 'QR KOD',
+      close: 'YOPISH',
+      qrTitle: 'QR KOD',
+      qrSub: 'Skanerlang va raqamli vizitkani ulashing',
+      saved: 'Kontakt saqlandi',
+      copied: 'Havola nusxalandi',
+      error: 'Xatolik yuz berdi'
+    },
+    ru: {
+      surname: 'Директор центра',
+      position: 'Культурный центр имени Гейдара Алиева в Узбекистане',
+      address: 'г. Ташкент, Узбекистан',
+      call: 'ПОЗВОНИТЬ',
+      email: 'ПОЧТА',
+      save: 'СОХРАНИТЬ',
+      qr: 'QR КОД',
+      close: 'ЗАКРЫТЬ',
+      qrTitle: 'QR-КОД',
+      qrSub: 'Отсканируйте и поделитесь визиткой',
+      saved: 'Контакт сохранён',
+      copied: 'Ссылка скопирована',
+      error: 'Произошла ошибка'
+    },
+    en: {
+      surname: 'Director of the Center',
+      position: 'Heydar Aliyev Cultural Center in Uzbekistan',
+      address: 'Tashkent, Uzbekistan',
+      call: 'CALL',
+      email: 'EMAIL',
+      save: 'SAVE',
+      qr: 'QR CODE',
+      close: 'CLOSE',
+      qrTitle: 'QR CODE',
+      qrSub: 'Scan to share the digital business card',
+      saved: 'Contact saved',
+      copied: 'Link copied',
+      error: 'Something went wrong'
+    }
+  };
+
+  /* =========================================================
+     DOM REFS
+  ========================================================= */
+  const surnameEl = document.getElementById('surname');
+  const positionEl = document.getElementById('position');
+  const addressEl = document.getElementById('address');
+  const callEl = document.getElementById('callText');
+  const emailEl = document.getElementById('emailText');
+  const saveEl = document.getElementById('saveText');
+  const qrEl = document.getElementById('qrText');
+  const toastEl = document.getElementById('toast');
+  const qrModal = document.getElementById('qrModal');
+  const qrContainer = document.getElementById('qr-container');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalSub = document.getElementById('modalSub');
+  const modalClose = document.getElementById('modalCloseBtn');
+
+  let toastTimer;
+
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+  }
+
+  /* =========================================================
+     LANGUAGE
+  ========================================================= */
+  function setLanguage(lang) {
+    const data = T[lang];
+    if (!data) return;
+    document.documentElement.lang = lang;
+    surnameEl.textContent = data.surname;
+    positionEl.textContent = data.position;
+    addressEl.innerHTML = `<i class="fa-solid fa-location-dot"></i><span>${data.address}</span>`;
+    callEl.textContent = data.call;
+    emailEl.textContent = data.email;
+    saveEl.textContent = data.save;
+    qrEl.textContent = data.qr;
+    modalClose.textContent = data.close;
+
+    document.querySelectorAll('.lang').forEach(el => {
+      el.classList.toggle('active', el.dataset.lang === lang);
+    });
+    localStorage.setItem('card-lang', lang);
+  }
+
+  document.querySelectorAll('.lang').forEach(el => {
+    el.addEventListener('click', () => setLanguage(el.dataset.lang));
+  });
+
+  const saved = localStorage.getItem('card-lang');
+  setLanguage(T[saved] ? saved : 'az');
+
+  /* =========================================================
+     SHARE
+  ========================================================= */
+  document.getElementById('shareBtn').addEventListener('click', async () => {
+    const lang = document.documentElement.lang;
+    const data = T[lang];
+    const shareObj = { title: 'Akif Marifli', text: data.position, url: window.location.href };
+    if (navigator.share) {
+      try { await navigator.share(shareObj); } catch (e) { if (e.name !== 'AbortError') showToast(data.error); }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      showToast(data.copied);
+    } catch { showToast(data.error); }
+  });
+
+  /* =========================================================
+     SAVE VCARD
+  ========================================================= */
+  document.getElementById('saveBtn').addEventListener('click', () => {
+    const vcard = [
+      'BEGIN:VCARD', 'VERSION:3.0',
+      'N:Marifli;Akif;;;', 'FN:Akif Marifli',
+      'ORG:Azerbaijan Cultural Center Named After Haydar Aliyev In Uzbekistan',
+      'TITLE:Director',
+      'TEL;TYPE=CELL:+998907889529', 'TEL;TYPE=CELL:+994502905005',
+      'EMAIL:info@evisitcard.az',
+      'ADR;TYPE=WORK:;;Tashkent;Uzbekistan;;;',
+      'END:VCARD'
+    ].join('\r\n');
+    const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Akif-Marifli.vcf';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    const lang = document.documentElement.lang;
+    showToast(T[lang].saved);
+  });
+
+  /* =========================================================
+     QR CODE
+  ========================================================= */
+  function generateQR() {
+    qrContainer.innerHTML = '';
+    const img = document.createElement('img');
+    const url = encodeURIComponent(window.location.href);
+    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${url}`;
+    img.alt = 'QR';
+    img.width = 180;
+    img.height = 180;
+    img.style.display = 'block';
+    qrContainer.appendChild(img);
+  }
+
+  document.getElementById('qrBtn').addEventListener('click', () => {
+    const lang = document.documentElement.lang;
+    const data = T[lang];
+    modalTitle.textContent = data.qrTitle;
+    modalSub.textContent = data.qrSub;
+    generateQR();
+    qrModal.classList.add('show');
+  });
+
+  modalClose.addEventListener('click', () => qrModal.classList.remove('show'));
+  qrModal.addEventListener('click', e => { if (e.target === qrModal) qrModal.classList.remove('show'); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') qrModal.classList.remove('show'); });
+</script>
+
+</body>
+</html>
