@@ -165,10 +165,11 @@
       font-size: clamp(28px, 7vw, 36px);
       font-weight: 800;
       letter-spacing: -0.5px;
-      color: var(--gold);
+      color: white;
       line-height: 1.1;
       text-shadow: 0 2px 12px rgba(0,0,0,0.3);
     }
+    .name span { color: var(--gold); }
 
     .title {
       font-size: 17px;
@@ -185,50 +186,20 @@
       padding: 18px 24px 28px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 18px;
     }
 
-    /* =========================================
-       ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ БЛОКОВ (ТЕМНЫЙ ФОН, КАК У КНОПОК)
-       ========================================= */
-    .info-block {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 16px 18px;
-      background: var(--card-bg); /* Тот же темно-синий цвет, что и у карточки */
-      border: 1px solid rgba(255, 255, 255, 0.06); /* Тонкая рамка как у кнопок */
-      border-radius: 16px;
-      box-shadow: none;
-      text-align: left;
-    }
-
-    .info-block .icon {
-      width: 28px;
-      height: 28px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold); /* Золотая иконка! */
-      font-size: 20px;
-      margin-top: 2px;
-    }
-
-    .info-block .text {
-      font-size: 14px;
+    .org {
+      font-size: 15px;
       font-weight: 500;
-      color: var(--text-primary); /* Светло-белый текст, чтобы читался на темном фоне */
-      line-height: 1.5;
-      margin: 0;
-      letter-spacing: 0px;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.4;
+      max-width: 320px;
+      margin: 0 auto 4px;
+      letter-spacing: -0.2px;
     }
 
-    .info-block .text.long-title {
-      font-weight: 500;
-    }
-
-    /* Адрес */
     .address-line {
       display: flex;
       align-items: center;
@@ -236,25 +207,60 @@
       gap: 8px;
       font-size: 13px;
       color: var(--text-muted);
-      margin-top: -2px;
-      margin-bottom: 2px;
+      margin-top: -6px;
+      margin-bottom: 4px;
     }
     .address-line i { color: var(--gold); font-size: 12px; }
 
-    /* contact grid */
+    /* ========================================================= */
+    /* ИЗМЕНЕННЫЙ БЛОК: SOCIAL ICON ROW (5 новых кнопок)          */
+    /* ========================================================= */
+    .social-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 6px 0 10px;
+      flex-wrap: wrap;
+    }
+
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #0a1628;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+      font-size: 17px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .social-btn:hover {
+      background: var(--gold);
+      color: #0a1628;
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .social-btn:active { transform: scale(0.95); }
+
+    /* ---------- CONTACT GRID (full width buttons) ---------- */
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 10px;
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
     .contact-btn {
       min-height: 54px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
+      gap: 12px;
+      padding: 8px 16px;
       border-radius: 60px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.06);
@@ -263,7 +269,6 @@
       transition: all 0.2s ease;
       backdrop-filter: blur(2px);
       cursor: pointer;
-      position: relative;
     }
     .contact-btn:hover {
       background: rgba(217, 181, 108, 0.08);
@@ -273,8 +278,8 @@
     .contact-btn:active { transform: scale(0.97); }
 
     .contact-icon {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
@@ -282,7 +287,7 @@
       border-radius: 50%;
       background: rgba(217, 181, 108, 0.12);
       color: var(--gold);
-      font-size: 15px;
+      font-size: 16px;
       transition: 0.2s;
     }
     .contact-btn:hover .contact-icon {
@@ -290,99 +295,23 @@
       color: #0a1628;
     }
 
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
     .contact-label {
       font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
+      font-weight: 600;
       color: var(--text-muted);
-      white-space: nowrap;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
     }
-    .contact-btn .contact-label strong {
-      color: white;
-      font-weight: 700;
-    }
-
-    /* ---------- PHONE DROPDOWN ---------- */
-    .phone-dropdown {
-      position: relative;
-      grid-column: span 2;
-    }
-
-    .phone-dropdown .contact-btn {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .phone-dropdown .contact-btn .contact-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .phone-dropdown .contact-btn .contact-label i {
-      font-size: 10px;
-      color: var(--gold);
-      transition: 0.2s;
-    }
-
-    .phone-dropdown.active .contact-btn .contact-label i {
-      transform: rotate(180deg);
-    }
-
-    .phone-options {
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 0;
-      right: 0;
-      background: #1a2f47;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-      overflow: hidden;
-      display: none;
-      z-index: 10;
-      backdrop-filter: blur(12px);
-    }
-
-    .phone-dropdown.active .phone-options {
-      display: block;
-      animation: dropIn 0.2s ease;
-    }
-
-    @keyframes dropIn {
-      0% { opacity: 0; transform: translateY(-6px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .phone-option {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 16px;
-      color: var(--text-primary);
-      text-decoration: none;
+    .contact-value {
       font-size: 13px;
       font-weight: 500;
-      transition: 0.15s;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    }
-    .phone-option:last-child { border-bottom: 0; }
-    .phone-option:hover {
-      background: rgba(217, 181, 108, 0.08);
-    }
-    .phone-option i {
-      color: var(--gold);
-      width: 20px;
-      text-align: center;
-    }
-    .phone-option .label {
-      color: var(--text-muted);
-      font-size: 10px;
-      font-weight: 600;
-      margin-left: auto;
-      background: rgba(255,255,255,0.04);
-      padding: 2px 10px;
-      border-radius: 20px;
+      color: var(--text-primary);
+      margin-top: 1px;
     }
 
     /* ---------- meta row ---------- */
@@ -555,7 +484,7 @@
       .name { font-size: 26px; }
       .title { font-size: 15px; }
       .contact-btn { min-height: 46px; }
-      .phone-option { font-size: 12px; padding: 10px 14px; }
+      .social-btn { width: 38px; height: 38px; font-size: 14px; }
     }
   </style>
 </head>
@@ -579,29 +508,19 @@
     </div>
 
     <div class="photo-ring">
-      <!-- 👇 CHANGE THIS TO THE NAME OF YOUR PHOTO FILE 👇 -->
+      <!-- ФОТО ТЕПЕРЬ НАЗЫВАЕТСЯ me.jpg -->
       <img src="me.jpg" alt="Akif Marifli">
     </div>
 
-    <h1 class="name" id="fullName">AKİF MARİFLİ</h1>
+    <h1 class="name">AKİF <span>MARİFLİ</span></h1>
     <div class="title" id="surname">Mərkəzin Direktoru</div>
   </section>
 
   <!-- ===== CONTENT ===== -->
   <div class="content">
 
-    <!-- БЛОК #1: Название Центра (Темный фон, золотая иконка, белый текст) -->
-    <div class="info-block">
-      <div class="icon"><i class="fa-solid fa-landmark"></i></div>
-      <div class="text long-title" id="position">
-        Azərbaycan Respublikasının Özbəkistan Respublikasındakı Səfirliyinin tabeliyində Heydər Əliyev adına Azərbaycan Mədəniyyət Mərkəzi
-      </div>
-    </div>
-
-    <!-- БЛОК #2: Должность (Темный фон, золотая иконка, белый текст) -->
-    <div class="info-block">
-      <div class="icon"><i class="fa-solid fa-paintbrush"></i></div>
-      <div class="text" id="subtitleText">MƏRKƏZİN DİREKTORU</div>
+    <div class="org" id="position">
+      Azerbaijan Cultural Center Named After Haydar Aliyev In Uzbekistan
     </div>
 
     <div class="address-line" id="address">
@@ -609,60 +528,74 @@
       <span>Daşkənd şəhəri, Özbəkistan</span>
     </div>
 
-    <!-- CONTACT GRID -->
+    <!-- ========================================== -->
+    <!-- НОВЫЙ РЯД СОЦИАЛЬНЫХ КНОПОК (5 штук)         -->
+    <!-- ========================================== -->
+    <div class="social-row">
+      <!-- 1. X (Twitter) -->
+      <a href="https://x.com/" target="_blank" rel="noopener" class="social-btn" title="X">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+
+      <!-- 2. Instagram -->
+      <a href="https://www.instagram.com/akif_marifli" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+
+      <!-- 3. Gmail -->
+      <a href="mailto:info@evisitcard.az" class="social-btn" title="Gmail">
+        <i class="fa-regular fa-envelope"></i>
+      </a>
+
+      <!-- 4. Call (Телефон) -->
+      <a href="tel:+998907889529" class="social-btn" title="Call">
+        <i class="fa-solid fa-phone"></i>
+      </a>
+
+      <!-- 5. WhatsApp -->
+      <a href="https://wa.me/998907889529" target="_blank" rel="noopener" class="social-btn" title="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+    <!-- ========================================== -->
+
+    <!-- CONTACT GRID (full width buttons) -->
     <div class="contact-grid">
 
-      <!-- PHONE DROPDOWN (spans 2 cols) -->
-      <div class="phone-dropdown" id="phoneDropdown">
-        <div class="contact-btn" id="phoneToggle">
-          <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
-          <span class="contact-label" id="callText">
-            ZƏNG ET
-            <i class="fa-solid fa-chevron-down"></i>
-          </span>
-        </div>
-
-        <div class="phone-options">
-          <a href="tel:+998907889529" class="phone-option">
-            <i class="fa-solid fa-phone"></i>
-            +998 90 788 95 29
-            <span class="label" id="labelMain">Əsas</span>
-          </a>
-          <a href="tel:+994502905005" class="phone-option">
-            <i class="fa-solid fa-mobile-screen-button"></i>
-            +994 50 290 50 05
-            <span class="label" id="labelBaku1">Bakı</span>
-          </a>
-           <a href="tel:+998948184747" class="phone-option">
-            <i class="fa-solid fa-mobile-screen-button"></i>
-            +998 94 818 47 47
-            <span class="label" id="labelToshkent">Toshkent</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- TELEGRAM -->
-      <a href="https://t.me/AkifMarifli" target="_blank" rel="noopener" class="contact-btn">
-        <span class="contact-icon"><i class="fa-brands fa-telegram"></i></span>
-        <span class="contact-label" id="telegramLabel">Telegram</span>
+      <!-- Email -->
+      <a href="mailto:info@evisitcard.az" class="contact-btn">
+        <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+        <span class="contact-info">
+          <span class="contact-label" id="emailLabel">Email</span>
+          <span class="contact-value">info@evisitcard.az</span>
+        </span>
       </a>
 
-      <!-- INSTAGRAM -->
-      <a href="https://www.instagram.com/akif_marifli" target="_blank" rel="noopener" class="contact-btn">
-        <span class="contact-icon"><i class="fa-brands fa-instagram"></i></span>
-        <span class="contact-label" id="instagramLabel">Instagram</span>
+      <!-- Phone -->
+      <a href="tel:+998907889529" class="contact-btn">
+        <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+        <span class="contact-info">
+          <span class="contact-label" id="phoneLabel">Telefon</span>
+          <span class="contact-value">+998 90 788 95 29</span>
+        </span>
       </a>
 
-      <!-- WHATSAPP -->
+      <!-- WhatsApp -->
       <a href="https://wa.me/998907889529" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-brands fa-whatsapp"></i></span>
-        <span class="contact-label" id="whatsappLabel">Whatsapp</span>
+        <span class="contact-info">
+          <span class="contact-label" id="whatsappLabel">WhatsApp</span>
+          <span class="contact-value">+998 90 788 95 29</span>
+        </span>
       </a>
 
-      <!-- EMAIL -->
-      <a href="mailto:akif.marifli@gmail.com" class="contact-btn">
-        <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
-        <span class="contact-label" id="emailText">E-poçt</span>
+      <!-- Telegram -->
+      <a href="https://t.me/AkifMarifli" target="_blank" rel="noopener" class="contact-btn">
+        <span class="contact-icon"><i class="fa-brands fa-telegram"></i></span>
+        <span class="contact-info">
+          <span class="contact-label" id="telegramLabel">Telegram</span>
+          <span class="contact-value">@AkifMarifli</span>
+        </span>
       </a>
 
     </div>
@@ -682,7 +615,7 @@
       <button class="action-btn" id="saveBtn"><i class="fa-solid fa-address-card"></i> <span id="saveText">Saxla</span></button>
       <button class="action-btn" id="qrBtn"><i class="fa-solid fa-qrcode"></i> <span id="qrText">QR kod</span></button>
     </div>
-    <div class="powered"></div>
+    <div class="powered">POWERED BY EVISITCARD.AZ</div>
   </div>
 
 </div>
@@ -706,15 +639,13 @@
   ========================================================= */
   const T = {
     az: {
-      fullName: 'AKİF MARİFLİ',
-      position: 'Azərbaycan Respublikasının Özbəkistan Respublikasındakı Səfirliyinin tabeliyində Heydər Əliyev adına Azərbaycan Mədəniyyət Mərkəzi',
-      subtitle: 'Direktor',
+      surname: 'Mərkəzin Direktoru',
+      position: 'Azərbaycan Respublikasının Özbəkistandakı Heydər Əliyev adına Mədəniyyət Mərkəzi',
       address: 'Daşkənd şəhəri, Özbəkistan',
-      call: 'Mobil nömrə',
-      email: 'E-poçt',
+      email: 'Email',
+      phone: 'Telefon',
+      whatsapp: 'WhatsApp',
       telegram: 'Telegram',
-      instagram: 'Instagram',
-      whatsapp: 'Whatsapp',
       save: 'Saxla',
       share: 'Paylaş',
       qr: 'QR kod',
@@ -723,21 +654,16 @@
       qrSub: 'Skan edin və rəqəmsal vizitkanı paylaşın',
       saved: 'Kontakt yadda saxlanıldı',
       copied: 'Link kopyalandı',
-      error: 'Xəta baş verdi',
-      labelMain: 'Əsas',
-      labelBaku: 'Bakı',
-      labelToshkent: 'Daşkənd'
+      error: 'Xəta baş verdi'
     },
     uz: {
-      fullName: 'AKİF MARİFLİ',
-      position: 'O‘zbekiston Respublikasidagi Ozarbayjon Respublikasi Elchixonasi huzuridagi Haydar Aliyev nomidagi Ozarbayjon Madaniyat Markazi',
-      subtitle: 'Direktor',
+      surname: 'Markaz direktori',
+      position: 'O‘zbekistondagi Haydar Aliyev nomidagi Madaniyat markazi',
       address: 'Toshkent shahri, O‘zbekiston',
-      call: 'Qo‘ng‘iroq',
-      email: 'E-pochta',
+      email: 'Email',
+      phone: 'Telefon',
+      whatsapp: 'WhatsApp',
       telegram: 'Telegram',
-      instagram: 'Instagram',
-      whatsapp: 'Whatsapp',
       save: 'Saqlash',
       share: 'Ulashish',
       qr: 'QR kod',
@@ -746,21 +672,16 @@
       qrSub: 'Skanerlang va raqamli vizitkani ulashing',
       saved: 'Kontakt saqlandi',
       copied: 'Havola nusxalandi',
-      error: 'Xatolik yuz berdi',
-      labelMain: 'Asosiy',
-      labelBaku: 'Boku',
-      labelToshkent: 'Toshkent'
+      error: 'Xatolik yuz berdi'
     },
     ru: {
-      fullName: 'АКИФ МАРИФЛИ',
-      position: 'Азербайджанский Культурный Центр имени Гейдара Алиева при Посольстве Азербайджанской Республики в Республике Узбекистан',
-      subtitle: 'Директор',
+      surname: 'Директор центра',
+      position: 'Культурный центр имени Гейдара Алиева в Узбекистане',
       address: 'г. Ташкент, Узбекистан',
-      call: 'Позвонить',
-      email: 'Почта',
+      email: 'Email',
+      phone: 'Телефон',
+      whatsapp: 'WhatsApp',
       telegram: 'Telegram',
-      instagram: 'Instagram',
-      whatsapp: 'Whatsapp',
       save: 'Сохранить',
       share: 'Поделиться',
       qr: 'QR код',
@@ -769,21 +690,16 @@
       qrSub: 'Отсканируйте и поделитесь визиткой',
       saved: 'Контакт сохранён',
       copied: 'Ссылка скопирована',
-      error: 'Произошла ошибка',
-      labelMain: 'Основной',
-      labelBaku: 'Баку',
-      labelToshkent: 'Ташкент'
+      error: 'Произошла ошибка'
     },
     en: {
-      fullName: 'AKIF MARIFLI',
-      position: 'Heydar Aliyev Azerbaijan Cultural Center under the Embassy of the Republic of Azerbaijan in the Republic of Uzbekistan',
-      subtitle: 'Director',
+      surname: 'Director of the Center',
+      position: 'Heydar Aliyev Cultural Center in Uzbekistan',
       address: 'Tashkent, Uzbekistan',
-      call: 'Call',
       email: 'Email',
+      phone: 'Phone',
+      whatsapp: 'WhatsApp',
       telegram: 'Telegram',
-      instagram: 'Instagram',
-      whatsapp: 'Whatsapp',
       save: 'Save',
       share: 'Share',
       qr: 'QR code',
@@ -792,26 +708,20 @@
       qrSub: 'Scan to share the digital business card',
       saved: 'Contact saved',
       copied: 'Link copied',
-      error: 'Something went wrong',
-      labelMain: 'Main',
-      labelBaku: 'Baku',
-      labelToshkent: 'Tashkent'
+      error: 'Something went wrong'
     }
   };
 
   /* =========================================================
      DOM REFS
   ========================================================= */
-  const fullNameEl = document.getElementById('fullName');
   const surnameEl = document.getElementById('surname');
   const positionEl = document.getElementById('position');
-  const subtitleEl = document.getElementById('subtitleText');
   const addressEl = document.getElementById('address');
-  const callEl = document.getElementById('callText');
-  const emailEl = document.getElementById('emailText');
-  const telegramEl = document.getElementById('telegramLabel');
-  const instagramEl = document.getElementById('instagramLabel');
-  const whatsappEl = document.getElementById('whatsappLabel');
+  const emailLabelEl = document.getElementById('emailLabel');
+  const phoneLabelEl = document.getElementById('phoneLabel');
+  const whatsappLabelEl = document.getElementById('whatsappLabel');
+  const telegramLabelEl = document.getElementById('telegramLabel');
   const saveEl = document.getElementById('saveText');
   const shareEl = document.getElementById('shareText');
   const qrEl = document.getElementById('qrText');
@@ -821,11 +731,6 @@
   const modalTitle = document.getElementById('modalTitle');
   const modalSub = document.getElementById('modalSub');
   const modalClose = document.getElementById('modalCloseBtn');
-
-  // IDs for phone labels
-  const labelMain = document.getElementById('labelMain');
-  const labelBaku1 = document.getElementById('labelBaku1');
-  const labelToshkent = document.getElementById('labelToshkent');
 
   let toastTimer;
 
@@ -843,26 +748,17 @@
     const data = T[lang];
     if (!data) return;
     document.documentElement.lang = lang;
-    
-    fullNameEl.textContent = data.fullName; 
     surnameEl.textContent = data.surname;
     positionEl.textContent = data.position;
-    subtitleEl.textContent = data.subtitle;
     addressEl.innerHTML = `<i class="fa-solid fa-location-dot"></i><span>${data.address}</span>`;
-    callEl.innerHTML = `${data.call} <i class="fa-solid fa-chevron-down"></i>`;
-    emailEl.textContent = data.email;
-    telegramEl.textContent = data.telegram;
-    instagramEl.textContent = data.instagram;
-    whatsappEl.textContent = data.whatsapp;
+    emailLabelEl.textContent = data.email;
+    phoneLabelEl.textContent = data.phone;
+    whatsappLabelEl.textContent = data.whatsapp;
+    telegramLabelEl.textContent = data.telegram;
     saveEl.textContent = data.save;
     shareEl.textContent = data.share;
     qrEl.textContent = data.qr;
     modalClose.textContent = data.close;
-
-    // Update the phone labels
-    labelMain.textContent = data.labelMain;
-    labelBaku1.textContent = data.labelBaku;
-    labelToshkent.textContent = data.labelToshkent;
 
     document.querySelectorAll('.lang').forEach(el => {
       el.classList.toggle('active', el.dataset.lang === lang);
@@ -876,31 +772,6 @@
 
   const saved = localStorage.getItem('card-lang');
   setLanguage(T[saved] ? saved : 'az');
-
-  /* =========================================================
-     PHONE DROPDOWN
-  ========================================================= */
-  const phoneDropdown = document.getElementById('phoneDropdown');
-  const phoneToggle = document.getElementById('phoneToggle');
-
-  phoneToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    phoneDropdown.classList.toggle('active');
-  });
-
-  document.addEventListener('click', () => {
-    phoneDropdown.classList.remove('active');
-  });
-
-  document.querySelectorAll('.phone-option').forEach(option => {
-    option.addEventListener('click', () => {
-      phoneDropdown.classList.remove('active');
-    });
-  });
-
-  document.querySelector('.phone-options').addEventListener('click', (e) => {
-    e.stopPropagation();
-  });
 
   /* =========================================================
      SHARE
@@ -928,8 +799,9 @@
       'N:Marifli;Akif;;;', 'FN:Akif Marifli',
       'ORG:Azerbaijan Cultural Center Named After Haydar Aliyev In Uzbekistan',
       'TITLE:Director',
-      'TEL;TYPE=CELL:+998907889529', 'TEL;TYPE=CELL:+994502905005', 'TEL;TYPE=CELL:+998948184747',
-      'EMAIL:akif.marifli@gmail.com',
+      'TEL;TYPE=CELL:+998907889529',
+      'TEL;TYPE=CELL:+994502905005',
+      'EMAIL:info@evisitcard.az',
       'ADR;TYPE=WORK:;;Tashkent;Uzbekistan;;;',
       'END:VCARD'
     ].join('\r\n');
