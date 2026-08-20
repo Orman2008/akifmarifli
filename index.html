@@ -94,7 +94,7 @@
     /* ---------- HERO ---------- */
     .hero {
       position: relative;
-      padding: 28px 24px 100px;
+      padding: 28px 24px 30px; /* Уменьшил нижний отступ, так как карточки теперь внизу */
       text-align: center;
       background: linear-gradient(145deg, #182b42, #0b1a2e);
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
@@ -171,49 +171,68 @@
     }
     .name span { color: var(--gold); }
 
-    .title {
-      font-size: 17px;
-      font-weight: 500;
-      color: var(--gold-soft);
-      margin-top: 6px;
-      letter-spacing: 0.3px;
-      opacity: 0.9;
-    }
-
     /* ---------- CONTENT ---------- */
     .content {
       flex: 1;
-      padding: 18px 24px 28px;
+      padding: 24px 24px 28px;
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
 
-    .org {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text-muted);
-      text-align: center;
-      line-height: 1.4;
-      max-width: 320px;
-      margin: 0 auto 4px;
-      letter-spacing: -0.2px;
+    /* ========================================================= */
+    /* НОВЫЙ СТИЛЬ ДЛЯ КАРТОЧЕК (как на 2-м скриншоте)           */
+    /* ========================================================= */
+    .info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: var(--radius-md); /* Скругленные углы */
+      background: rgba(255, 255, 255, 0.03); /* Легкий фон карточки */
+      border: 1px solid rgba(255, 255, 255, 0.06); /* Рамка */
+      backdrop-filter: blur(2px);
     }
 
-    .address-line {
+    .info-card .icon-wrapper {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold); /* Золотой цвет иконок */
+      font-size: 22px;
+      margin-top: 2px;
+    }
+
+    .info-card .text-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .info-card .text-wrapper p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    /* Стили для строки адреса внизу */
+    .address-line-new {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       font-size: 13px;
       color: var(--text-muted);
-      margin-top: -6px;
-      margin-bottom: 4px;
+      margin-top: 4px;
     }
-    .address-line i { color: var(--gold); font-size: 12px; }
+    .address-line-new i { color: var(--gold); font-size: 13px; }
 
     /* ========================================================= */
-    /* ИЗМЕНЕННЫЙ БЛОК: SOCIAL ICON ROW (5 новых кнопок)          */
+    /* СОЦИАЛЬНЫЕ КНОПКИ (как вы просили ранее)                   */
     /* ========================================================= */
     .social-row {
       display: flex;
@@ -479,12 +498,15 @@
       .card { min-height: 100dvh; border-radius: 0; }
     }
     @media (max-width: 370px) {
-      .hero { padding: 20px 16px 80px; }
+      .hero { padding: 20px 16px 20px; }
       .photo-ring { width: 100px; height: 100px; }
       .name { font-size: 26px; }
       .title { font-size: 15px; }
       .contact-btn { min-height: 46px; }
       .social-btn { width: 38px; height: 38px; font-size: 14px; }
+      .info-card { padding: 12px 14px; flex-direction: column; align-items: center; text-align: center; }
+      .info-card .icon-wrapper { width: 36px; height: 36px; font-size: 18px; }
+      .info-card .text-wrapper p { font-size: 13px; }
     }
   </style>
 </head>
@@ -508,7 +530,7 @@
     </div>
 
     <div class="photo-ring">
-      <!-- ФОТО ТЕПЕРЬ НАЗЫВАЕТСЯ me.jpg -->
+      <!-- ФОТО (me.jpg) -->
       <img src="me.jpg" alt="Akif Marifli">
     </div>
 
@@ -519,59 +541,60 @@
   <!-- ===== CONTENT ===== -->
   <div class="content">
 
-    <div class="org" id="position">
-      Azerbaijan Cultural Center Named After Haydar Aliyev In Uzbekistan
+    <!-- НОВЫЕ КАРТОЧКИ -->
+    <div class="info-card">
+      <div class="icon-wrapper">
+        <i class="fa-solid fa-building-columns"></i>
+      </div>
+      <div class="text-wrapper">
+        <p>Azərbaycan Respublikasının Özbəkistan Respublikasındakı Səfirliyinin tabeliyində Heydər Əliyev adına Azərbaycan Mədəniyyət Mərkəzi</p>
+      </div>
     </div>
 
-    <div class="address-line" id="address">
+    <div class="info-card">
+      <div class="icon-wrapper">
+        <i class="fa-solid fa-paintbrush"></i>
+      </div>
+      <div class="text-wrapper">
+        <p>Direktor</p>
+      </div>
+    </div>
+
+    <div class="address-line-new">
       <i class="fa-solid fa-location-dot"></i>
       <span>Daşkənd şəhəri, Özbəkistan</span>
     </div>
 
     <!-- ========================================== -->
-    <!-- НОВЫЙ РЯД СОЦИАЛЬНЫХ КНОПОК (5 штук)         -->
+    <!-- СОЦИАЛЬНЫЕ КНОПКИ -->
     <!-- ========================================== -->
-    <div class="social-row">
-      <!-- 1. X (Twitter) -->
+    <div class="social-row" style="margin-top: 4px;">
       <a href="https://x.com/" target="_blank" rel="noopener" class="social-btn" title="X">
         <i class="fa-brands fa-x-twitter"></i>
       </a>
-
-      <!-- 2. Instagram -->
       <a href="https://www.instagram.com/akif_marifli" target="_blank" rel="noopener" class="social-btn" title="Instagram">
         <i class="fa-brands fa-instagram"></i>
       </a>
-
-      <!-- 3. Gmail -->
-      <a href="mailto:info@evisitcard.az" class="social-btn" title="Gmail">
+      <a href="mailto:akif.marifli@gmail.com" class="social-btn" title="Gmail">
         <i class="fa-regular fa-envelope"></i>
       </a>
-
-      <!-- 4. Call (Телефон) -->
       <a href="tel:+998907889529" class="social-btn" title="Call">
         <i class="fa-solid fa-phone"></i>
       </a>
-
-      <!-- 5. WhatsApp -->
       <a href="https://wa.me/998907889529" target="_blank" rel="noopener" class="social-btn" title="WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
       </a>
     </div>
-    <!-- ========================================== -->
 
     <!-- CONTACT GRID (full width buttons) -->
     <div class="contact-grid">
-
-      <!-- Email -->
-      <a href="mailto:info@evisitcard.az" class="contact-btn">
+      <a href="mailto:akif.marifli@gmail.com" class="contact-btn">
         <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
         <span class="contact-info">
           <span class="contact-label" id="emailLabel">Email</span>
-          <span class="contact-value">info@evisitcard.az</span>
+          <span class="contact-value">akif.marifli@gmail.com</span>
         </span>
       </a>
-
-      <!-- Phone -->
       <a href="tel:+998907889529" class="contact-btn">
         <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
         <span class="contact-info">
@@ -579,8 +602,6 @@
           <span class="contact-value">+998 90 788 95 29</span>
         </span>
       </a>
-
-      <!-- WhatsApp -->
       <a href="https://wa.me/998907889529" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-brands fa-whatsapp"></i></span>
         <span class="contact-info">
@@ -588,8 +609,6 @@
           <span class="contact-value">+998 90 788 95 29</span>
         </span>
       </a>
-
-      <!-- Telegram -->
       <a href="https://t.me/AkifMarifli" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-brands fa-telegram"></i></span>
         <span class="contact-info">
@@ -597,10 +616,8 @@
           <span class="contact-value">@AkifMarifli</span>
         </span>
       </a>
-
     </div>
 
-    <!-- meta row -->
     <div class="meta-row">
       <span class="meta-item"><i class="fa-solid fa-bolt"></i> NFC</span>
       <span class="meta-item"><i class="fa-solid fa-qrcode"></i> QR</span>
@@ -639,8 +656,7 @@
   ========================================================= */
   const T = {
     az: {
-      surname: 'Mərkəzin Direktoru',
-      position: 'Azərbaycan Respublikasının Özbəkistandakı Heydər Əliyev adına Mədəniyyət Mərkəzi',
+      position: 'Azərbaycan Respublikasının Özbəkistan Respublikasındakı Səfirliyinin tabeliyində Heydər Əliyev adına Azərbaycan Mədəniyyət Mərkəzi',
       address: 'Daşkənd şəhəri, Özbəkistan',
       email: 'Email',
       phone: 'Telefon',
@@ -657,8 +673,7 @@
       error: 'Xəta baş verdi'
     },
     uz: {
-      surname: 'Markaz direktori',
-      position: 'O‘zbekistondagi Haydar Aliyev nomidagi Madaniyat markazi',
+      position: "O'zbekiston Respublikasidagi Ozarbayjon Respublikasi elchixonasi huzuridagi Haydar Aliyev nomidagi Ozarbayjon Madaniyat markazi",
       address: 'Toshkent shahri, O‘zbekiston',
       email: 'Email',
       phone: 'Telefon',
@@ -675,8 +690,7 @@
       error: 'Xatolik yuz berdi'
     },
     ru: {
-      surname: 'Директор центра',
-      position: 'Культурный центр имени Гейдара Алиева в Узбекистане',
+      position: 'Культурный центр Азербайджана имени Гейдара Алиева при Посольстве Азербайджанской Республики в Республике Узбекистан',
       address: 'г. Ташкент, Узбекистан',
       email: 'Email',
       phone: 'Телефон',
@@ -693,8 +707,7 @@
       error: 'Произошла ошибка'
     },
     en: {
-      surname: 'Director of the Center',
-      position: 'Heydar Aliyev Cultural Center in Uzbekistan',
+      position: 'Azerbaijan Cultural Center named after Heydar Aliyev under the Embassy of the Republic of Azerbaijan in the Republic of Uzbekistan',
       address: 'Tashkent, Uzbekistan',
       email: 'Email',
       phone: 'Phone',
@@ -797,11 +810,11 @@
     const vcard = [
       'BEGIN:VCARD', 'VERSION:3.0',
       'N:Marifli;Akif;;;', 'FN:Akif Marifli',
-      'ORG:Azerbaijan Cultural Center Named After Haydar Aliyev In Uzbekistan',
+      'ORG:Azerbaijan Cultural Center named after Heydar Aliyev under the Embassy of the Republic of Azerbaijan in the Republic of Uzbekistan',
       'TITLE:Director',
       'TEL;TYPE=CELL:+998907889529',
       'TEL;TYPE=CELL:+994502905005',
-      'EMAIL:info@evisitcard.az',
+      'EMAIL:akif.marifli@gmail.com',
       'ADR;TYPE=WORK:;;Tashkent;Uzbekistan;;;',
       'END:VCARD'
     ].join('\r\n');
