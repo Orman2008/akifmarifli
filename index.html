@@ -101,7 +101,7 @@
     }
 
     /* ========================================================= */
-    /* ИДЕАЛЬНАЯ АНИМАЦИЯ ВЫПЛЫВАЮЩЕГО МЕНЮ (БЕЗ СДВИГА САЙТА)   */
+    /* КНОПКА ЯЗЫКА                                              */
     /* ========================================================= */
     .top-bar {
       display: flex;
@@ -109,7 +109,7 @@
       justify-content: flex-end;
       margin-bottom: 26px;
       position: relative;
-      z-index: 20; /* Поднимаем выше всего */
+      z-index: 20;
     }
 
     .lang-container {
@@ -117,7 +117,6 @@
       display: inline-block;
     }
 
-    /* Кнопка - всегда видна и не меняет размер */
     .lang-trigger {
       display: flex;
       align-items: center;
@@ -133,7 +132,7 @@
       font-weight: 700;
       font-size: 14px;
       transition: all 0.3s ease;
-      min-width: 85px; /* Фиксированная ширина */
+      min-width: 85px;
       position: relative;
       z-index: 2;
     }
@@ -153,12 +152,11 @@
       transform: rotate(180deg);
     }
 
-    /* Выплывающее меню (абсолютное позиционирование) */
     .lang-dropdown {
       position: absolute;
-      top: calc(100% + 8px); /* Чуть ниже кнопки */
+      top: calc(100% + 8px);
       left: 0;
-      right: 0; /* Растягиваем ровно под ширину кнопки */
+      right: 0;
       background: rgba(18, 31, 51, 0.98);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -166,7 +164,6 @@
       padding: 6px;
       box-shadow: 0 15px 40px rgba(0,0,0,0.6);
       
-      /* Анимация раскрытия вниз */
       max-height: 0;
       opacity: 0;
       transform: translateY(-10px) scaleY(0.8);
@@ -184,13 +181,12 @@
       pointer-events: auto;
     }
 
-    /* Опции внутри меню (выровнены идеально по центру) */
     .lang-option {
       display: block;
       width: 100%;
-      padding: 8px 0; /* Убираем горизонтальные отступы для центровки */
+      padding: 8px 0;
       border-radius: 30px;
-      text-align: center; /* Текст строго по центру */
+      text-align: center;
       font-weight: 600;
       font-size: 14px;
       color: var(--text-muted);
@@ -209,7 +205,6 @@
       background: var(--gold);
       color: #0a1628;
     }
-    /* ========================================================= */
 
     /* photo */
     .photo-ring {
@@ -258,6 +253,7 @@
       gap: 18px;
     }
 
+    /* --- ИНФОРМАЦИОННЫЕ КАРТОЧКИ --- */
     .info-card {
       display: flex;
       align-items: flex-start;
@@ -294,17 +290,7 @@
       font-weight: 500;
     }
 
-    .address-line-new {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-    .address-line-new i { color: var(--gold); font-size: 13px; }
-
+    /* --- МАЛЕНЬКИЕ КРУГЛЫЕ КНОПКИ --- */
     .social-row {
       display: flex;
       justify-content: center;
@@ -323,60 +309,62 @@
       border-radius: 50%;
       background: #0a1628;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--text-muted);
+      color: #b0b8d1;
       font-size: 17px;
       text-decoration: none;
       transition: all 0.2s ease;
       cursor: pointer;
     }
     .social-btn:hover {
-      background: var(--gold);
-      color: #0a1628;
-      border-color: var(--gold);
+      background: #2a354f;
+      color: #ffffff;
       transform: translateY(-2px);
+      border-color: #4a5a7a;
     }
     .social-btn:active { transform: scale(0.95); }
 
+    /* --- БОЛЬШИЕ КНОПКИ --- */
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
+      gap: 12px;
       margin-top: 4px;
     }
 
     .contact-btn {
-      min-height: 54px;
+      min-height: 64px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 16px;
+      gap: 16px;
+      padding: 8px 16px 8px 12px;
       border-radius: 60px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #1e2538;
+      border: 1px solid rgba(255, 255, 255, 0.05);
       text-decoration: none;
       color: var(--text-primary);
       transition: all 0.2s ease;
       backdrop-filter: blur(2px);
       cursor: pointer;
+      overflow: hidden;
     }
     .contact-btn:hover {
-      background: rgba(217, 181, 108, 0.08);
-      border-color: rgba(217, 181, 108, 0.2);
+      background: #2a354f;
       transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.1);
     }
     .contact-btn:active { transform: scale(0.97); }
 
     .contact-icon {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      background: rgba(217, 181, 108, 0.12);
+      background: rgba(217, 181, 108, 0.15);
       color: var(--gold);
-      font-size: 16px;
+      font-size: 18px;
       transition: 0.2s;
     }
     .contact-btn:hover .contact-icon {
@@ -388,21 +376,112 @@
       display: flex;
       flex-direction: column;
       flex: 1;
+      gap: 2px;
+      overflow: hidden;
     }
     .contact-label {
       font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: 0.3px;
+      font-weight: 700;
+      color: #6a7b96;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
     }
     .contact-value {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       color: var(--text-primary);
-      margin-top: 1px;
     }
 
+    /* ========================================================= */
+    /* РАЗДВИГАЮЩАЯСЯ КНОПКА ТЕЛЕФОНОВ (всё едет вниз)          */
+    /* ========================================================= */
+    .phone-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .phone-main-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--text-primary);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0;
+      font-family: inherit;
+      gap: 8px;
+    }
+    
+    .phone-main-trigger .primary-number {
+      display: flex;
+      flex-direction: column;
+      gap: 0px;
+    }
+
+    .phone-main-trigger .primary-number small {
+      font-size: 11px;
+      font-weight: 400;
+      color: #6a7b96;
+    }
+
+    .phone-main-trigger i {
+      color: var(--gold);
+      font-size: 12px;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .phone-main-trigger.open i {
+      transform: rotate(180deg);
+    }
+
+    .phone-list-container {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 0;
+    }
+
+    .phone-list-container.open {
+      max-height: 300px;
+      opacity: 1;
+      margin-top: 12px; /* Плавный отступ при раскрытии */
+    }
+
+    .phone-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px 8px 0;
+      border-radius: 30px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: background 0.2s ease;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .phone-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .phone-item .number-tag {
+      font-size: 11px;
+      color: #6a7b96;
+      font-weight: 400;
+    }
+    /* ========================================================= */
+
+    /* --- META --- */
     .meta-row {
       display: flex;
       justify-content: center;
@@ -422,6 +501,7 @@
     }
     .meta-item i { color: var(--gold); font-size: 11px; }
 
+    /* ---------- FOOTER ---------- */
     .footer {
       padding: 10px 20px 20px;
       background: rgba(0, 0, 0, 0.2);
@@ -468,6 +548,7 @@
       margin-top: 4px;
     }
 
+    /* ---------- MODAL & TOAST ---------- */
     .modal {
       position: fixed;
       inset: 0;
@@ -567,7 +648,9 @@
       .photo-ring { width: 100px; height: 100px; }
       .name { font-size: 26px; }
       .title { font-size: 15px; }
-      .contact-btn { min-height: 46px; }
+      .contact-btn { min-height: 56px; padding: 6px 12px 6px 8px; }
+      .contact-icon { width: 38px; height: 38px; font-size: 16px; }
+      .contact-value { font-size: 13px; }
       .social-btn { width: 38px; height: 38px; font-size: 14px; }
       .info-card { padding: 12px 14px; flex-direction: column; align-items: center; text-align: center; }
       .info-card .icon-wrapper { width: 36px; height: 36px; font-size: 18px; }
@@ -583,25 +666,20 @@
   <!-- ===== HERO ===== -->
   <section class="hero">
     
-    <!-- ВЫПЛЫВАЮЩАЯ КНОПКА ЯЗЫКА (БЕЗ СДВИГА КОНТЕНТА) -->
     <div class="top-bar">
       <div class="lang-container">
-        
         <button class="lang-trigger" id="langTrigger">
           <span id="currentLangText">AZ</span>
           <i class="fa-solid fa-chevron-down"></i>
         </button>
-        
         <div class="lang-dropdown" id="langDropdown">
           <button class="lang-option active-option" data-lang="az">AZ</button>
           <button class="lang-option" data-lang="uz">UZ</button>
           <button class="lang-option" data-lang="ru">RU</button>
           <button class="lang-option" data-lang="en">EN</button>
         </div>
-        
       </div>
     </div>
-    <!-- КОНЕЦ КНОПКИ ЯЗЫКА -->
 
     <div class="photo-ring">
       <img src="me.jpg" alt="Akif Marifli">
@@ -614,62 +692,58 @@
   <!-- ===== CONTENT ===== -->
   <div class="content">
 
+    <!-- Info Cards -->
     <div class="info-card">
-      <div class="icon-wrapper">
-        <i class="fa-solid fa-building-columns"></i>
-      </div>
+      <div class="icon-wrapper"><i class="fa-solid fa-building-columns"></i></div>
       <div class="text-wrapper">
         <p id="text-organization">Azərbaycan Respublikasının Özbəkistan Respublikasındakı Səfirliyinin tabeliyində Heydər Əliyev adına Azərbaycan Mədəniyyət Mərkəzi</p>
       </div>
     </div>
 
     <div class="info-card">
-      <div class="icon-wrapper">
-        <i class="fa-solid fa-paintbrush"></i>
-      </div>
+      <div class="icon-wrapper"><i class="fa-solid fa-paintbrush"></i></div>
       <div class="text-wrapper">
         <p id="text-position">Direktor</p>
       </div>
     </div>
 
-    <div class="address-line-new" id="address-line">
-      <i class="fa-solid fa-location-dot"></i>
-      <span id="text-address">Daşkənd şəhəri, Özbəkistan</span>
-    </div>
-
+    <!-- ========================================== -->
+    <!-- МАЛЕНЬКИЕ КРУГЛЫЕ КНОПКИ                     -->
+    <!-- ========================================== -->
     <div class="social-row" style="margin-top: 4px;">
-      <a href="https://x.com/AkifMarifli?s=20" target="_blank" rel="noopener" class="social-btn" title="X">
-        <i class="fa-brands fa-x-twitter"></i>
-      </a>
-      <a href="https://www.instagram.com/akif_marifli" target="_blank" rel="noopener" class="social-btn" title="Instagram">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
-      <a href="mailto:akif.marifli@gmail.com" class="social-btn" title="Gmail">
-        <i class="fa-regular fa-envelope"></i>
-      </a>
-      <a href="tel:+998907889529" class="social-btn" title="Call">
-        <i class="fa-solid fa-phone"></i>
-      </a>
-      <a href="https://wa.me/998907889529" target="_blank" rel="noopener" class="social-btn" title="WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-      </a>
+      <a href="https://x.com/AkifMarifli?s=20" target="_blank" rel="noopener" class="social-btn" title="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="https://www.instagram.com/akif_marifli" target="_blank" rel="noopener" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://wa.me/998907889529" target="_blank" rel="noopener" class="social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      <a href="https://t.me/AkifMarifli" target="_blank" rel="noopener" class="social-btn" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+      <a href="tel:+998907889529" class="social-btn" title="Call"><i class="fa-solid fa-phone"></i></a>
+      <a href="mailto:akif.marifli@gmail.com" class="social-btn" title="Email"><i class="fa-regular fa-envelope"></i></a>
     </div>
 
+    <!-- ========================================== -->
+    <!-- БОЛЬШИЕ КНОПКИ                               -->
+    <!-- Location с названием центра в самом конце   -->
+    <!-- ========================================== -->
     <div class="contact-grid">
-      <a href="mailto:akif.marifli@gmail.com" class="contact-btn">
-        <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+      
+      <!-- 1. X -->
+      <a href="https://x.com/AkifMarifli?s=20" target="_blank" rel="noopener" class="contact-btn">
+        <span class="contact-icon"><i class="fa-brands fa-x-twitter"></i></span>
         <span class="contact-info">
-          <span class="contact-label" id="emailLabel">Email</span>
-          <span class="contact-value">akif.marifli@gmail.com</span>
+          <span class="contact-label" id="xLabel">X</span>
+          <span class="contact-value">@AkifMarifli</span>
         </span>
       </a>
-      <a href="tel:+998907889529" class="contact-btn">
-        <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
+
+      <!-- 2. Instagram -->
+      <a href="https://www.instagram.com/akif_marifli" target="_blank" rel="noopener" class="contact-btn">
+        <span class="contact-icon"><i class="fa-brands fa-instagram"></i></span>
         <span class="contact-info">
-          <span class="contact-label" id="phoneLabel">Telefon</span>
-          <span class="contact-value">+998 90 788 95 29</span>
+          <span class="contact-label" id="instaLabel">Instagram</span>
+          <span class="contact-value">@akif_marifli</span>
         </span>
       </a>
+
+      <!-- 3. WhatsApp -->
       <a href="https://wa.me/998907889529" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-brands fa-whatsapp"></i></span>
         <span class="contact-info">
@@ -677,6 +751,8 @@
           <span class="contact-value">+998 90 788 95 29</span>
         </span>
       </a>
+
+      <!-- 4. Telegram -->
       <a href="https://t.me/AkifMarifli" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-brands fa-telegram"></i></span>
         <span class="contact-info">
@@ -684,6 +760,58 @@
           <span class="contact-value">@AkifMarifli</span>
         </span>
       </a>
+
+      <!-- 5. Call (РАЗДВИГАЮЩАЯСЯ КНОПКА С 3 НОМЕРАМИ) -->
+      <div class="contact-btn" style="cursor: default; padding: 0; display: block;">
+        <div style="display: flex; align-items: center; gap: 16px; padding: 8px 16px 8px 12px; width: 100%;">
+          <span class="contact-icon" style="flex-shrink: 0;"><i class="fa-solid fa-phone"></i></span>
+          <div class="contact-info phone-wrapper">
+            <span class="contact-label" id="phoneLabel">Call</span>
+            
+            <button class="phone-main-trigger" id="phoneTrigger">
+              <span class="primary-number">
+                <span id="mainPhoneDisplay">+998 90 788 95 29</span>
+                <small id="mainPhoneTag">Əsas</small>
+              </span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+
+            <div class="phone-list-container" id="phoneListContainer">
+              <a href="tel:+998907889529" class="phone-item">
+                <span>+998 90 788 95 29</span>
+                <span class="number-tag" id="tagMain">Əsas</span>
+              </a>
+              <a href="tel:+998948184747" class="phone-item">
+                <span>+998 94 818 47 47</span>
+                <span class="number-tag" id="tagTashkent">Daşkənd</span>
+              </a>
+              <a href="tel:+994502905005" class="phone-item">
+                <span>+994 50 290 50 05</span>
+                <span class="number-tag" id="tagBaku">Bakı</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Email -->
+      <a href="mailto:akif.marifli@gmail.com" class="contact-btn">
+        <span class="contact-icon"><i class="fa-regular fa-envelope"></i></span>
+        <span class="contact-info">
+          <span class="contact-label" id="emailLabel">Email</span>
+          <span class="contact-value">akif.marifli@gmail.com</span>
+        </span>
+      </a>
+
+      <!-- 7. LOCATION -->
+      <a href="https://maps.google.com/?q=Tashkent,Uzbekistan" target="_blank" rel="noopener" class="contact-btn">
+        <span class="contact-icon"><i class="fa-solid fa-location-dot"></i></span>
+        <span class="contact-info">
+          <span class="contact-label" id="locationLabel">Location</span>
+          <span class="contact-value" id="text-address">Azərbaycan Mədəniyyət Mərkəzi</span>
+        </span>
+      </a>
+
     </div>
 
     <div class="meta-row">
@@ -726,11 +854,17 @@
     az: {
       position: 'Direktor',
       organization: 'Azərbaycan Respublikasının Özbəkistan Respublikasındakı Səfirliyinin tabeliyində Heydər Əliyev adına Azərbaycan Mədəniyyət Mərkəzi',
-      address: 'Daşkənd şəhəri, Özbəkistan',
-      email: 'Email',
-      phone: 'Telefon',
+      address: 'Azərbaycan Mədəniyyət Mərkəzi',
+      x: 'X',
+      insta: 'Instagram',
       whatsapp: 'WhatsApp',
       telegram: 'Telegram',
+      phone: 'Call',
+      email: 'Email',
+      location: 'Location',
+      mainTag: 'Əsas',
+      tagTashkent: 'Daşkənd',
+      tagBaku: 'Bakı',
       save: 'Saxla',
       share: 'Paylaş',
       qr: 'QR kod',
@@ -743,12 +877,18 @@
     },
     uz: {
       position: 'Direktor',
-      organization: "O‘zbekiston Respublikasidagi Ozarbayjon Respublikasi Elchixonasi huzuridagi Haydar Aliyev nomidagi Ozarbayjon Madaniyat Markazi",
-      address: 'Toshkent shahri, O‘zbekiston',
-      email: 'Email',
-      phone: 'Telefon',
+      organization: "O'zbekiston Respublikasidagi Ozarbayjon Respublikasi elchixonasi huzuridagi Haydar Aliyev nomidagi Ozarbayjon Madaniyat markazi",
+      address: 'Ozarbayjon Madaniyat markazi',
+      x: 'X',
+      insta: 'Instagram',
       whatsapp: 'WhatsApp',
       telegram: 'Telegram',
+      phone: 'Call',
+      email: 'Email',
+      location: 'Location',
+      mainTag: 'Asosiy',
+      tagTashkent: 'Toshkent',
+      tagBaku: 'Boku',
       save: 'Saqlash',
       share: 'Ulashish',
       qr: 'QR kod',
@@ -762,11 +902,17 @@
     ru: {
       position: 'Директор',
       organization: 'Культурный центр Азербайджана имени Гейдара Алиева при Посольстве Азербайджанской Республики в Республике Узбекистан',
-      address: 'г. Ташкент, Узбекистан',
-      email: 'Email',
-      phone: 'Телефон',
+      address: 'Азербайджанский культурный центр им. Гейдара Алиева',
+      x: 'X',
+      insta: 'Instagram',
       whatsapp: 'WhatsApp',
       telegram: 'Telegram',
+      phone: 'Call',
+      email: 'Email',
+      location: 'Location',
+      mainTag: 'Основной',
+      tagTashkent: 'Ташкент',
+      tagBaku: 'Баку',
       save: 'Сохранить',
       share: 'Поделиться',
       qr: 'QR код',
@@ -780,11 +926,17 @@
     en: {
       position: 'Director',
       organization: 'Azerbaijan Cultural Center named after Heydar Aliyev under the Embassy of the Republic of Azerbaijan in the Republic of Uzbekistan',
-      address: 'Tashkent, Uzbekistan',
-      email: 'Email',
-      phone: 'Phone',
+      address: 'Azerbaijan Cultural Center',
+      x: 'X',
+      insta: 'Instagram',
       whatsapp: 'WhatsApp',
       telegram: 'Telegram',
+      phone: 'Call',
+      email: 'Email',
+      location: 'Location',
+      mainTag: 'Main',
+      tagTashkent: 'Tashkent',
+      tagBaku: 'Baku',
       save: 'Save',
       share: 'Share',
       qr: 'QR code',
@@ -804,10 +956,15 @@
   const textPosition = document.getElementById('text-position');
   const textOrganization = document.getElementById('text-organization');
   const textAddress = document.getElementById('text-address');
-  const emailLabelEl = document.getElementById('emailLabel');
-  const phoneLabelEl = document.getElementById('phoneLabel');
-  const whatsappLabelEl = document.getElementById('whatsappLabel');
-  const telegramLabelEl = document.getElementById('telegramLabel');
+  
+  const xLabel = document.getElementById('xLabel');
+  const instaLabel = document.getElementById('instaLabel');
+  const whatsappLabel = document.getElementById('whatsappLabel');
+  const telegramLabel = document.getElementById('telegramLabel');
+  const phoneLabel = document.getElementById('phoneLabel');
+  const emailLabel = document.getElementById('emailLabel');
+  const locationLabel = document.getElementById('locationLabel');
+
   const saveEl = document.getElementById('saveText');
   const shareEl = document.getElementById('shareText');
   const qrEl = document.getElementById('qrText');
@@ -818,11 +975,20 @@
   const modalSub = document.getElementById('modalSub');
   const modalClose = document.getElementById('modalCloseBtn');
 
-  // Language Switcher Elements
+  // Language Switcher
   const langTrigger = document.getElementById('langTrigger');
   const langDropdown = document.getElementById('langDropdown');
   const currentLangText = document.getElementById('currentLangText');
   const langOptions = document.querySelectorAll('.lang-option');
+
+  // Phone Dropdown (Раздвигающаяся)
+  const phoneTrigger = document.getElementById('phoneTrigger');
+  const phoneListContainer = document.getElementById('phoneListContainer');
+  const mainPhoneDisplay = document.getElementById('mainPhoneDisplay');
+  const mainPhoneTag = document.getElementById('mainPhoneTag');
+  const tagMain = document.getElementById('tagMain');
+  const tagTashkent = document.getElementById('tagTashkent');
+  const tagBaku = document.getElementById('tagBaku');
 
   let toastTimer;
 
@@ -836,15 +1002,12 @@
   /* =========================================================
      ВЫПЛЫВАЮЩЕЕ МЕНЮ ЯЗЫКА
   ========================================================= */
-  
-  // Открытие/закрытие по клику
   langTrigger.addEventListener('click', (e) => {
     e.stopPropagation();
     langTrigger.classList.toggle('open');
     langDropdown.classList.toggle('open');
   });
 
-  // Закрытие при клике вне кнопки
   document.addEventListener('click', (e) => {
     if (!langTrigger.contains(e.target) && !langDropdown.contains(e.target)) {
       langTrigger.classList.remove('open');
@@ -852,31 +1015,50 @@
     }
   });
 
+  /* =========================================================
+     РАЗДВИГАЮЩИЙСЯ СПИСОК ТЕЛЕФОНОВ
+  ========================================================= */
+  phoneTrigger.addEventListener('click', (e) => {
+    e.stopPropagation();
+    phoneTrigger.classList.toggle('open');
+    phoneListContainer.classList.toggle('open');
+  });
+
+  /* =========================================================
+     ФУНКЦИЯ СМЕНЫ ЯЗЫКА
+  ========================================================= */
   function setLanguage(lang) {
     const data = T[lang];
     if (!data) return;
 
     document.documentElement.lang = lang;
     
-    // Обновление текстов
     surnameEl.textContent = data.surname;
     textPosition.textContent = data.position;
     textOrganization.textContent = data.organization;
     textAddress.textContent = data.address;
     
-    emailLabelEl.textContent = data.email;
-    phoneLabelEl.textContent = data.phone;
-    whatsappLabelEl.textContent = data.whatsapp;
-    telegramLabelEl.textContent = data.telegram;
+    xLabel.textContent = data.x;
+    instaLabel.textContent = data.insta;
+    whatsappLabel.textContent = data.whatsapp;
+    telegramLabel.textContent = data.telegram;
+    phoneLabel.textContent = data.phone;
+    emailLabel.textContent = data.email;
+    locationLabel.textContent = data.location;
+    
+    // Обновление тегов для телефонов
+    mainPhoneTag.textContent = data.mainTag;
+    tagMain.textContent = data.mainTag;
+    tagTashkent.textContent = data.tagTashkent;
+    tagBaku.textContent = data.tagBaku;
+    
     saveEl.textContent = data.save;
     shareEl.textContent = data.share;
     qrEl.textContent = data.qr;
     modalClose.textContent = data.close;
 
-    // Обновление текста на кнопке
     currentLangText.textContent = lang.toUpperCase();
 
-    // Обновление активного элемента в меню
     langOptions.forEach(opt => {
       opt.classList.remove('active-option');
       if(opt.dataset.lang === lang) {
@@ -886,19 +1068,16 @@
 
     localStorage.setItem('card-lang', lang);
     
-    // Закрыть меню после выбора
     langTrigger.classList.remove('open');
     langDropdown.classList.remove('open');
   }
 
-  // Обработчики кликов по опциям
   langOptions.forEach(option => {
     option.addEventListener('click', () => {
       setLanguage(option.dataset.lang);
     });
   });
 
-  // Загрузка сохраненного языка
   const saved = localStorage.getItem('card-lang');
   if (saved && T[saved]) {
     setLanguage(saved);
@@ -907,7 +1086,7 @@
   }
 
   /* =========================================================
-     SHARE
+     SHARE, SAVE, QR
   ========================================================= */
   document.getElementById('shareBtn').addEventListener('click', async () => {
     const lang = document.documentElement.lang;
@@ -923,9 +1102,6 @@
     } catch { showToast(data.error); }
   });
 
-  /* =========================================================
-     SAVE VCARD
-  ========================================================= */
   document.getElementById('saveBtn').addEventListener('click', () => {
     const vcard = [
       'BEGIN:VCARD', 'VERSION:3.0',
@@ -951,9 +1127,6 @@
     showToast(T[lang].saved);
   });
 
-  /* =========================================================
-     QR CODE
-  ========================================================= */
   function generateQR() {
     qrContainer.innerHTML = '';
     const img = document.createElement('img');
