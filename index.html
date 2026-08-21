@@ -101,7 +101,7 @@
     }
 
     /* ========================================================= */
-    /* КНОПКА ЯЗЫКА                                              */
+    /* ВЫПЛЫВАЮЩАЯ КНОПКА ЯЗЫКА (сохранил ваш текущий стиль)    */
     /* ========================================================= */
     .top-bar {
       display: flex;
@@ -685,7 +685,8 @@
       <img src="me.jpg" alt="Akif Marifli">
     </div>
 
-    <h1 class="name">AKİF MARİFLİ</h1>
+    <!-- ТЕПЕРЬ ИМЯ ПЕРЕВОДИТСЯ ЧЕРЕЗ JS -->
+    <h1 class="name" id="fullName">AKİF MARİFLİ</h1>
     <div class="title" id="surname">Mərkəzin Direktoru</div>
   </section>
 
@@ -721,7 +722,6 @@
 
     <!-- ========================================== -->
     <!-- БОЛЬШИЕ КНОПКИ                               -->
-    <!-- Location с названием центра в самом конце   -->
     <!-- ========================================== -->
     <div class="contact-grid">
       
@@ -761,7 +761,7 @@
         </span>
       </a>
 
-      <!-- 5. Call (РАЗДВИГАЮЩАЯСЯ КНОПКА С 3 НОМЕРАМИ) -->
+      <!-- 5. Call (РАЗДВИГАЮЩАЯСЯ КНОПКА, УДАЛЕН +998 94 818 47 47) -->
       <div class="contact-btn" style="cursor: default; padding: 0; display: block;">
         <div style="display: flex; align-items: center; gap: 16px; padding: 8px 16px 8px 12px; width: 100%;">
           <span class="contact-icon" style="flex-shrink: 0;"><i class="fa-solid fa-phone"></i></span>
@@ -780,10 +780,6 @@
               <a href="tel:+998907889529" class="phone-item">
                 <span>+998 90 788 95 29</span>
                 <span class="number-tag" id="tagMain">Əsas</span>
-              </a>
-              <a href="tel:+998948184747" class="phone-item">
-                <span>+998 94 818 47 47</span>
-                <span class="number-tag" id="tagTashkent">Daşkənd</span>
               </a>
               <a href="tel:+994502905005" class="phone-item">
                 <span>+994 50 290 50 05</span>
@@ -804,7 +800,7 @@
       </a>
 
       <!-- 7. LOCATION -->
-      <a href="https://maps.app.goo.gl/BEQp6Z2UuNzowSN4A?g_st=ic" target="_blank" rel="noopener" class="contact-btn">
+      <a href="https://maps.google.com/?q=Tashkent,Uzbekistan" target="_blank" rel="noopener" class="contact-btn">
         <span class="contact-icon"><i class="fa-solid fa-location-dot"></i></span>
         <span class="contact-info">
           <span class="contact-label" id="locationLabel">Location</span>
@@ -852,6 +848,7 @@
   ========================================================= */
   const T = {
     az: {
+      fullName: 'AKİF MARİFLİ',
       position: 'Direktor',
       organization: 'Azərbaycan Respublikasının Özbəkistan Respublikasındakı Səfirliyinin tabeliyində Heydər Əliyev adına Azərbaycan Mədəniyyət Mərkəzi',
       address: 'Azərbaycan Mədəniyyət Mərkəzi',
@@ -863,7 +860,6 @@
       email: 'Email',
       location: 'Location',
       mainTag: 'Əsas',
-      tagTashkent: 'Daşkənd',
       tagBaku: 'Bakı',
       save: 'Saxla',
       share: 'Paylaş',
@@ -876,6 +872,7 @@
       error: 'Xəta baş verdi'
     },
     uz: {
+      fullName: 'AKİF MARİFLİ',
       position: 'Direktor',
       organization: "O'zbekiston Respublikasidagi Ozarbayjon Respublikasi elchixonasi huzuridagi Haydar Aliyev nomidagi Ozarbayjon Madaniyat markazi",
       address: 'Ozarbayjon Madaniyat markazi',
@@ -887,7 +884,6 @@
       email: 'Email',
       location: 'Location',
       mainTag: 'Asosiy',
-      tagTashkent: 'Toshkent',
       tagBaku: 'Boku',
       save: 'Saqlash',
       share: 'Ulashish',
@@ -900,6 +896,7 @@
       error: 'Xatolik yuz berdi'
     },
     ru: {
+      fullName: 'АКИФ МАРИФЛИ',
       position: 'Директор',
       organization: 'Культурный центр Азербайджана имени Гейдара Алиева при Посольстве Азербайджанской Республики в Республике Узбекистан',
       address: 'Азербайджанский культурный центр им. Гейдара Алиева',
@@ -911,7 +908,6 @@
       email: 'Email',
       location: 'Location',
       mainTag: 'Основной',
-      tagTashkent: 'Ташкент',
       tagBaku: 'Баку',
       save: 'Сохранить',
       share: 'Поделиться',
@@ -924,6 +920,7 @@
       error: 'Произошла ошибка'
     },
     en: {
+      fullName: 'AKIF MARIFLI',
       position: 'Director',
       organization: 'Azerbaijan Cultural Center named after Heydar Aliyev under the Embassy of the Republic of Azerbaijan in the Republic of Uzbekistan',
       address: 'Azerbaijan Cultural Center',
@@ -935,7 +932,6 @@
       email: 'Email',
       location: 'Location',
       mainTag: 'Main',
-      tagTashkent: 'Tashkent',
       tagBaku: 'Baku',
       save: 'Save',
       share: 'Share',
@@ -952,6 +948,7 @@
   /* =========================================================
      DOM REFS
   ========================================================= */
+  const fullNameEl = document.getElementById('fullName');
   const surnameEl = document.getElementById('surname');
   const textPosition = document.getElementById('text-position');
   const textOrganization = document.getElementById('text-organization');
@@ -981,13 +978,12 @@
   const currentLangText = document.getElementById('currentLangText');
   const langOptions = document.querySelectorAll('.lang-option');
 
-  // Phone Dropdown (Раздвигающаяся)
+  // Phone Dropdown
   const phoneTrigger = document.getElementById('phoneTrigger');
   const phoneListContainer = document.getElementById('phoneListContainer');
   const mainPhoneDisplay = document.getElementById('mainPhoneDisplay');
   const mainPhoneTag = document.getElementById('mainPhoneTag');
   const tagMain = document.getElementById('tagMain');
-  const tagTashkent = document.getElementById('tagTashkent');
   const tagBaku = document.getElementById('tagBaku');
 
   let toastTimer;
@@ -1033,6 +1029,7 @@
 
     document.documentElement.lang = lang;
     
+    fullNameEl.textContent = data.fullName;
     surnameEl.textContent = data.surname;
     textPosition.textContent = data.position;
     textOrganization.textContent = data.organization;
@@ -1049,7 +1046,6 @@
     // Обновление тегов для телефонов
     mainPhoneTag.textContent = data.mainTag;
     tagMain.textContent = data.mainTag;
-    tagTashkent.textContent = data.tagTashkent;
     tagBaku.textContent = data.tagBaku;
     
     saveEl.textContent = data.save;
@@ -1103,15 +1099,18 @@
   });
 
   document.getElementById('saveBtn').addEventListener('click', () => {
+    const lang = document.documentElement.lang;
+    const orgName = T[lang].organization;
+
     const vcard = [
       'BEGIN:VCARD', 'VERSION:3.0',
       'N:Marifli;Akif;;;', 'FN:Akif Marifli',
-      'ORG:Azerbaijan Cultural Center named after Heydar Aliyev under the Embassy of the Republic of Azerbaijan in the Republic of Uzbekistan',
+      `ORG:${orgName}`,
       'TITLE:Director',
       'TEL;TYPE=CELL:+998907889529',
       'TEL;TYPE=CELL:+994502905005',
       'EMAIL:akif.marifli@gmail.com',
-      'ADR;TYPE=WORK:;;O‘zbekistondagi Haydar Aliyev nomidagi Ozarbayjon Madaniyat Markazi;;;',
+      'ADR;TYPE=WORK:;;Tashkent;Uzbekistan;;;',
       'END:VCARD'
     ].join('\r\n');
     const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
@@ -1123,7 +1122,6 @@
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-    const lang = document.documentElement.lang;
     showToast(T[lang].saved);
   });
 
